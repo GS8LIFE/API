@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0c411ef3-1be6-495b-8ff8-fa808e5ddcf9}</ProjectGuid>
-    <RootNamespace>API</RootNamespace>
+    <ProjectGuid>{661b9112-e2c0-495b-9571-da5f22e4f39d}</ProjectGuid>
+    <RootNamespace>WinAPI</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="API.cpp" />
+    <ClCompile Include="Win_API.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

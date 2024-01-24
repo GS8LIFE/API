@@ -8,3 +8,7 @@ UTitleLevel::~UTitleLevel()
 {
 }
 
+void UTitleLevel::BeginPlay()
+{
+	int a = 0;
+}

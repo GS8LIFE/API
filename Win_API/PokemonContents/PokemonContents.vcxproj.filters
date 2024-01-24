@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="ContentsCore.cpp" />
     <ClCompile Include="PokemonContentCore.cpp" />
     <ClCompile Include="PokemonPlayer.cpp" />
+    <ClCompile Include="TitleLevel.cpp" />
+    <ClCompile Include="PlayLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
-    <ClInclude Include="ContentsCore.h" />
     <ClInclude Include="PokemonContentCore.h" />
     <ClInclude Include="PokemonPlayer.h" />
   </ItemGroup>

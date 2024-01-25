@@ -6,10 +6,12 @@
     <ClCompile Include="PokemonPlayer.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PokemonContentCore.h" />
     <ClInclude Include="PokemonPlayer.h" />
+    <ClInclude Include="Bullet.h" />
   </ItemGroup>
 </Project>

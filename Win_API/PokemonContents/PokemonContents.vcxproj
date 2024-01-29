@@ -172,6 +172,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="PokemonContentCore.h" />
     <ClInclude Include="PokemonPlayer.h" />
   </ItemGroup>

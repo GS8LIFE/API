@@ -13,5 +13,6 @@
     <ClInclude Include="PokemonContentCore.h" />
     <ClInclude Include="PokemonPlayer.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="PlayLevel.h" />
   </ItemGroup>
 </Project>

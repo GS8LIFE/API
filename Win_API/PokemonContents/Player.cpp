@@ -31,9 +31,9 @@ void Player::BeginPlay()
 
 
 	{
-		HeadRenderer = CreateImageRenderer(0);
-		HeadRenderer->SetPosition({ 0, -25 });
-		HeadRenderer->SetScale({ 60, 60 });
+		HpRenderer = CreateImageRenderer(0);
+		HpRenderer->SetPosition({ 0, -20 });
+		HpRenderer->SetScale({ 60, 10 });
 	}
 	// UImageRenderer* Ptr = CreateRenderer();
 	// 플레이어 기준
@@ -110,7 +110,7 @@ void Player::Tick(float _DeltaTime)
 
 	if (true == EngineInput::IsDown('T'))
 	{
-		HeadRenderer->Destroy();
+		HpRenderer->Destroy();
 	}
 
 
@@ -122,7 +122,7 @@ void Player::Tick(float _DeltaTime)
 	// 0.5 0.5 0.5 0.5 
 	// 2차가 지나야 
 	// 초당 2번 실행된다고 칩시다.
-	if (true == EngineInput::IsDown('Q'))
+	if (true == EngineInput::IsPress('Q'))
 	{
 		ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
 		NewBullet->SetActorLocation(GetActorLocation());

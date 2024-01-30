@@ -27,15 +27,9 @@ void Player::BeginPlay()
 		BodyRenderer = CreateImageRenderer(0);
 		BodyRenderer->SetPosition({ 0, 30 });
 		BodyRenderer->SetImageToScale("À±°Ö¶ó.bmp");
-		// BodyRenderer->SetScale({ 80, 80 });
 	}
 
 
-	{
-		HeadRenderer = CreateImageRenderer(0);
-		HeadRenderer->SetPosition({ 0, -25 });
-		HeadRenderer->SetImageToScale("À±°Ö¶ó.bmp");
-	}
 	// UImageRenderer* Ptr = CreateRenderer();
 	// ÇÃ·¹ÀÌ¾î ±âÁØ
 	// Ptr->SetPosition({0.0, -50.0f}); // 500, 500
@@ -90,29 +84,29 @@ void Player::Tick(float _DeltaTime)
 
 	if (true == EngineInput::IsPress('A'))
 	{
-		AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
+		AddActorLocation(FVector::Left * 200.0f * _DeltaTime);
 	}
 
 	if (true == EngineInput::IsPress('D'))
 	{
-		AddActorLocation(FVector::Right * 500.0f * _DeltaTime);
+		AddActorLocation(FVector::Right * 200.0f * _DeltaTime);
 	}
 
 	if (true == EngineInput::IsPress('W'))
 	{
-		AddActorLocation(FVector::Up * 500.0f * _DeltaTime);
+		AddActorLocation(FVector::Up * 200.0f * _DeltaTime);
 	}
 
 
 	if (true == EngineInput::IsPress('S'))
 	{
-		AddActorLocation(FVector::Down * 500.0f * _DeltaTime);
+		AddActorLocation(FVector::Down * 200.0f * _DeltaTime);
 	}
 
-	if (true == EngineInput::IsDown('T'))
-	{
-		HeadRenderer->Destroy();
-	}
+//	if (true == EngineInput::IsDown('T'))
+//	{
+//		HeadRenderer->Destroy();
+//	}
 
 
 
@@ -127,6 +121,6 @@ void Player::Tick(float _DeltaTime)
 	{
 		ABullet* NewBullet = GetWorld()->SpawnActor<ABullet>();
 		NewBullet->SetActorLocation(GetActorLocation());
-		NewBullet->SetDir(FVector::Right);
+		NewBullet->SetDir(FVector::Up);
 	}
 }

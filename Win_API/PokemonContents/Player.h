@@ -21,7 +21,6 @@ protected:
 private:
 	float QSkillCool = 1.0f;
 
-	UImageRenderer* HeadRenderer;
 	UImageRenderer* BodyRenderer;
 
 	// std::vector<UImageRenderer*>

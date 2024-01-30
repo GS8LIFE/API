@@ -19,9 +19,9 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 private:
-	float QSkillCool = 0.0f;
+	float QSkillCool = 1.0f;
 
-	UImageRenderer* HpRenderer;
+	UImageRenderer* HeadRenderer;
 	UImageRenderer* BodyRenderer;
 
 	// std::vector<UImageRenderer*>

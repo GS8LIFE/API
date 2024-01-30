@@ -6,11 +6,11 @@
 #include <vector>
 #include <list>
 
-Player::Player() 
+Player::Player()
 {
 }
 
-Player::~Player() 
+Player::~Player()
 {
 }
 
@@ -26,14 +26,15 @@ void Player::BeginPlay()
 	{
 		BodyRenderer = CreateImageRenderer(0);
 		BodyRenderer->SetPosition({ 0, 30 });
-		BodyRenderer->SetScale({ 80, 80 });
+		BodyRenderer->SetImageToScale("윤겔라.bmp");
+		// BodyRenderer->SetScale({ 80, 80 });
 	}
 
 
 	{
-		HpRenderer = CreateImageRenderer(0);
-		HpRenderer->SetPosition({ 0, -20 });
-		HpRenderer->SetScale({ 60, 10 });
+		HeadRenderer = CreateImageRenderer(0);
+		HeadRenderer->SetPosition({ 0, -25 });
+		HeadRenderer->SetImageToScale("윤겔라.bmp");
 	}
 	// UImageRenderer* Ptr = CreateRenderer();
 	// 플레이어 기준
@@ -44,7 +45,7 @@ void Player::BeginPlay()
 
 
 	// CreateDefaultSubObject<UStaticMeshRenderer>();
-	
+
 	// n장 랜더할수 있게 만들어야 한다.
 	// 상체와 하체로 나뉜다고 쳐보자.
 
@@ -73,7 +74,7 @@ void Player::BeginPlay()
 
 
 
-	SetActorLocation({100, 100});
+	SetActorLocation({ 100, 100 });
 	SetActorScale({ 100, 100 });
 }
 
@@ -110,12 +111,12 @@ void Player::Tick(float _DeltaTime)
 
 	if (true == EngineInput::IsDown('T'))
 	{
-		HpRenderer->Destroy();
+		HeadRenderer->Destroy();
 	}
 
 
 
-	// QSkillCool += 0.1f;
+	 QSkillCool += 0.0f;
 	// QSkillCool += 진짜 프레임과 프레임 사이에 소모된 현실 시간이어야 한다.;
 
 	// 초당 2번 실행했다고 해도

@@ -18,8 +18,8 @@ void UPlayLevel::BeginPlay()
 	// 실행경로가 나와야 한다고 생각합니다.
 	UEngineDirectory NewPath;
 
-	NewPath.MoveParent();
 	// NewPath.Move("ContentsResources");
+	NewPath.MoveParent();
 
 	NewPath.Move("ContentsResources");
 	NewPath.Move("Texture");
@@ -28,8 +28,15 @@ void UPlayLevel::BeginPlay()
 	// 확장자도 마찬가지 대소문자 구분을 무조건 대문자로 바꿔서 찾을것이다..
 	std::list<UEngineFile> AllFileList = NewPath.AllFile({".png", ".bmp" }, true);
 
+	for (UEngineFile& File : AllFileList)
+	{
+		std::string FullPath = File.GetFullPath();
+		// 싱글톤 잊지 말라고 일부러 GetInst를 사용하겠습니다.
+		UEngineResourcesManager::GetInst().LoadImg(FullPath);
+	}
+
 	// CherryBomb_0.png
-	UEngineResourcesManager::GetInst().LoadImg("C:\\Users\\assortrock0\\Desktop\\윤겔라\\케이시\\Sleep.bmp");
+
 	// ULevel* const This = this;
 	this->SpawnActor<Player>();
 

@@ -164,7 +164,7 @@
       <Project>{f0716ec2-0bc5-43ea-9046-b203e0985a67}</Project>
     </ProjectReference>
     <ProjectReference Include="..\PokemonContents\PokemonContents.vcxproj">
-      <Project>{ed1ede85-45e1-41e2-bb38-f12c05327f7c}</Project>
+      <Project>{49ab9bdb-5d92-4cea-8a49-412b2ebfeed4}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

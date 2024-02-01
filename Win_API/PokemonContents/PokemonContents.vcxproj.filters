@@ -2,8 +2,37 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="PokemonContents.h" />
+    <ClInclude Include="Play.h">
+      <Filter>Play</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Play\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PokemonContents.cpp" />
+    <ClCompile Include="Play.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Play\Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Play">
+      <UniqueIdentifier>{668f715c-f1ac-4827-b598-4fa04f11bb09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Title">
+      <UniqueIdentifier>{12791fb5-bdd1-48c4-8fe9-40a4019377f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Player">
+      <UniqueIdentifier>{93fa42a7-3224-4475-9b50-ecc313920a1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

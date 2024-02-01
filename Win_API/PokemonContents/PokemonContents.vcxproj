@@ -151,10 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Play.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PokemonContents.h" />
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Play.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PokemonContents.cpp" />
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">

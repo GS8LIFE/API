@@ -39,12 +39,27 @@ public:
 	void ScreenClear();
 	void ScreenUpdate();
 
+	FVector GetWindowScale()
+	{
+		return Scale;
+	}
+
+	void SetClearColor(Color8Bit _Color)
+	{
+		_Color.A = 0;
+		ClearColor = _Color;
+	}
+
+	FVector GetMousePosition();
+
 protected:
 
 private:
 	static bool WindowLive;
 	static HINSTANCE hInstance;
 	static LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
+
+	Color8Bit ClearColor = Color8Bit::WhiteA;
 
 	HWND hWnd = nullptr;
 	// HDC hDC = nullptr;
@@ -58,6 +73,7 @@ private:
 	UWindowImage* BackBufferImage = nullptr;
 	// 이미지가 2개다 이미지는 버퍼라는 개념으로도 부른다. => 더블버퍼링이라는 이름인 겁니다.
 	FVector Scale;
+	FVector Position;
 
 };
 

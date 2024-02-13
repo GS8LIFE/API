@@ -2,18 +2,18 @@
 #include <EngineCore\Actor.h>
 #include "Enum.h"
 // Ό³Έν :
-class Dragon : public AActor
+class Dragon2 : public AActor
 {
 public:
 	// constrcuter destructer
-	Dragon();
-	~Dragon();
+	Dragon2();
+	~Dragon2();
 
 	// delete Function
-	Dragon(const Dragon& _Other) = delete;
-	Dragon(Dragon&& _Other) noexcept = delete;
-	Dragon& operator=(const Dragon& _Other) = delete;
-	Dragon& operator=(Dragon&& _Other) noexcept = delete;
+	Dragon2(const Dragon2& _Other) = delete;
+	Dragon2(Dragon2&& _Other) noexcept = delete;
+	Dragon2& operator=(const Dragon2& _Other) = delete;
+	Dragon2& operator=(Dragon2&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;

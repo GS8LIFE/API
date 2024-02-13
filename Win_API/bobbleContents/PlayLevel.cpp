@@ -1,5 +1,6 @@
 #include "PlayLevel.h"
-#include "Ceil.h"
+#include "Dragon.h"
+#include "Dragon2.h"
 #include <EngineCore\EngineCore.h>
 
 PlayLevel::PlayLevel() 
@@ -43,15 +44,15 @@ void PlayLevel::BeginPlay()
 
 	}
 
-	Ceil* Player = SpawnActor<Ceil>();
-
+	Dragon* Player = SpawnActor<Dragon>();
+	Dragon2* Player2 = SpawnActor<Dragon2>();
 }
 
 void PlayLevel::Tick(float _DeltaTime)
 {
 	ULevel::Tick(_DeltaTime);
 
-	if (EngineInput::IsDown('Q'))
+	if (UEngineInput::IsDown('Q'))
 	{
 
 	}

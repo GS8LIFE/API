@@ -165,6 +165,9 @@
     <ClInclude Include="bobbleCore.h" />
     <ClInclude Include="Ceil.h" />
     <ClInclude Include="Dragon.h" />
+    <ClInclude Include="Dragon2.h" />
+    <ClInclude Include="Dragon2Tool.h" />
+    <ClInclude Include="DragonTool.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="PlayLevel.h" />
   </ItemGroup>
@@ -172,6 +175,9 @@
     <ClCompile Include="bobbleCore.cpp" />
     <ClCompile Include="Ceil.cpp" />
     <ClCompile Include="Dragon.cpp" />
+    <ClCompile Include="Dragon2.cpp" />
+    <ClCompile Include="Dragon2Tool.cpp" />
+    <ClCompile Include="DragonTool.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
   </ItemGroup>

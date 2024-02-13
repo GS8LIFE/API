@@ -2,25 +2,49 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="bobbleCore.h" />
-    <ClInclude Include="PlayLevel.h">
-      <Filter>Play</Filter>
-    </ClInclude>
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Dragon.h">
       <Filter>Play\Dragon</Filter>
     </ClInclude>
-    <ClInclude Include="Ceil.h" />
+    <ClInclude Include="Dragon.h" />
+    <ClInclude Include="Dragon2.h">
+      <Filter>Play\Dragon2</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon2Tool.h">
+      <Filter>Play\Dragon2</Filter>
+    </ClInclude>
+    <ClInclude Include="DragonTool.h">
+      <Filter>Play\Dragon</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayLevel.h">
+      <Filter>Play\PlayLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="Ceil.h">
+      <Filter>Play\PlayLevel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
-    <ClCompile Include="PlayLevel.cpp">
-      <Filter>Play</Filter>
-    </ClCompile>
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="Dragon.cpp">
       <Filter>Play\Dragon</Filter>
     </ClCompile>
-    <ClCompile Include="Ceil.cpp" />
+    <ClCompile Include="Dragon.cpp" />
+    <ClCompile Include="Dragon2.cpp">
+      <Filter>Play\Dragon2</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon2Tool.cpp">
+      <Filter>Play\Dragon2</Filter>
+    </ClCompile>
+    <ClCompile Include="DragonTool.cpp">
+      <Filter>Play\Dragon</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayLevel.cpp">
+      <Filter>Play\PlayLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="Ceil.cpp">
+      <Filter>Play\PlayLevel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">
@@ -28,6 +52,12 @@
     </Filter>
     <Filter Include="Play\Dragon">
       <UniqueIdentifier>{2847dd98-c772-47e7-a7ea-2649246b7ca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Dragon2">
+      <UniqueIdentifier>{fb51fb02-e992-43e3-bb04-20b8bb34c3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\PlayLevel">
+      <UniqueIdentifier>{44ac8a76-9bcb-4888-8d22-64a67d2ff4b4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

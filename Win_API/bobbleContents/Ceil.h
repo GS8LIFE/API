@@ -2,18 +2,18 @@
 #include <EngineCore\Actor.h>
 
 // Ό³Έν :
-class Ceil : public AActor
+class ceil : public AActor
 {
 public:
 	// constrcuter destructer
-	Ceil();
-	~Ceil();
+	ceil();
+	~ceil();
 
 	// delete Function
-	Ceil(const Ceil& _Other) = delete;
-	Ceil(Ceil&& _Other) noexcept = delete;
-	Ceil& operator=(const Ceil& _Other) = delete;
-	Ceil& operator=(Ceil&& _Other) noexcept = delete;
+	ceil(const ceil& _Other) = delete;
+	ceil(ceil&& _Other) noexcept = delete;
+	ceil& operator=(const ceil& _Other) = delete;
+	ceil& operator=(ceil&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;

@@ -6,10 +6,12 @@ enum class NowState
 	Idle,
 	Attack,
 	wait,
+	Move,
 };
 enum RenderOrder
 {
 	Map,
 	Monster,
-	Player
+	Player,
+	Title
 };

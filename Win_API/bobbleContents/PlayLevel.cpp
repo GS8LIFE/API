@@ -1,8 +1,9 @@
 #include "PlayLevel.h"
 #include "Dragon.h"
 #include "Dragon2.h"
+#include "Dragon2Tool.h"
 #include <EngineCore\EngineCore.h>
-
+#include "Enum.h"
 PlayLevel::PlayLevel() 
 {
 }
@@ -42,10 +43,18 @@ void PlayLevel::BeginPlay()
 		Renderer2->SetPosition({ 350,920 });//↓
 		Renderer2->SetScale({ 150,100 }); //발사대 위치와 크기
 
+		AActor* ceil = SpawnActor<AActor>();
+		UImageRenderer* Renderer3 = ceil->CreateImageRenderer();
+		Renderer3->SetAlpha(100);
+		Renderer3->SetImage("ceil.png");
+		Renderer3->CreateAnimation("Idle", "ceil.png", 0, 11, 1.0f, false);
+		Renderer3->SetPosition({ 350,70 });//↓
+		Renderer3->SetScale({ 300,1700 }); //발사대 위치와 크기
 	}
 
 	Dragon* Player = SpawnActor<Dragon>();
 	Dragon2* Player2 = SpawnActor<Dragon2>();
+	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 }
 
 void PlayLevel::Tick(float _DeltaTime)

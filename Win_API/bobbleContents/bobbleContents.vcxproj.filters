@@ -3,9 +3,6 @@
   <ItemGroup>
     <ClInclude Include="bobbleCore.h" />
     <ClInclude Include="Enum.h" />
-    <ClInclude Include="Dragon.h">
-      <Filter>Play\Dragon</Filter>
-    </ClInclude>
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="Dragon2.h">
       <Filter>Play\Dragon2</Filter>
@@ -19,16 +16,17 @@
     <ClInclude Include="PlayLevel.h">
       <Filter>Play\PlayLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>Play\Dragon</Filter>
+    </ClInclude>
     <ClInclude Include="Ceil.h">
       <Filter>Play\PlayLevel</Filter>
     </ClInclude>
+    <ClInclude Include="Title.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
     <ClCompile Include="Enum.cpp" />
-    <ClCompile Include="Dragon.cpp">
-      <Filter>Play\Dragon</Filter>
-    </ClCompile>
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="Dragon2.cpp">
       <Filter>Play\Dragon2</Filter>
@@ -42,9 +40,13 @@
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Play\PlayLevel</Filter>
     </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>Play\Dragon</Filter>
+    </ClCompile>
     <ClCompile Include="Ceil.cpp">
       <Filter>Play\PlayLevel</Filter>
     </ClCompile>
+    <ClCompile Include="Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">

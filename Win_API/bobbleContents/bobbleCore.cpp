@@ -45,6 +45,8 @@ void bobbleCore::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("ceil.png", 12, 10);
 	UEngineResourcesManager::GetInst().LoadFolder(NewDir.AppendPath("ceil"));
 
+	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool.png", 4, 2);
+
 	CreateLevel<PlayLevel>("Play");
 	ChangeLevel("Play");
 }

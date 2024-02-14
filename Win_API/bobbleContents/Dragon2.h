@@ -26,11 +26,12 @@ protected:
 	// 상태 함수들
 	void Idle(float _DeltaTime);
 	void Attack(float _DeltaTime);
-
+	void Move(float _DeltaTime);
 	// 상태 시작 함수들
 	void IdleStart();
 	void waitStart();
 	void attackStart();
+	void MoveStart();
 
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";

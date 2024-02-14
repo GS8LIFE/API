@@ -83,11 +83,11 @@ void Dragon::StateUpdate(float _DeltaTime)
 void Dragon::Attack(float _DeltaTime)
 {
 	{
-		StateChange(NowState::Idle);
-		return;
 	}
 	if (true == UEngineInput::IsFree(VK_SPACE))
 	{
+		StateChange(NowState::Idle);
+		return;
 	}
 	
 

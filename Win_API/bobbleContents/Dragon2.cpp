@@ -15,19 +15,20 @@ void Dragon2::BeginPlay()
 
 	Renderer = CreateImageRenderer(RenderOrder::Player);
 	Renderer->SetImage("BobbleDragon.png");
-	Renderer->SetTransform({ {380,940}, {100, 100} });
-	Renderer->CreateAnimation("idle", "BobbleDragon.png", 23, 23, 0.1f, true);
+	Renderer->SetTransform({ {450,940}, {100, 100} });
+	Renderer->CreateAnimation("idle", "BobbleDragon.png", 23, 23, 0.1f, false);
 	Renderer->CreateAnimation("wait", "BobbleDragon.png", 0, 2, 0.1f, true);
 	Renderer->CreateAnimation("attack", "BobbleDragon.png", 27, 28, 1.0f, true);
+	Renderer->CreateAnimation("move", "BobbleDragon.png", 29, 36, 1.0f, true);
 
 
-
+	Renderer->ChangeAnimation("idle");
 	StateChange(NowState::Idle);
 }
 
 void Dragon2::IdleStart()
 {
-	Renderer->ChangeAnimation("Idle");
+	Renderer->ChangeAnimation("idle");
 }
 
 void Dragon2::waitStart()
@@ -38,6 +39,11 @@ void Dragon2::waitStart()
 void Dragon2::attackStart()
 {
 	Renderer->ChangeAnimation("attack");
+}
+
+void Dragon2::MoveStart()
+{
+	Renderer->ChangeAnimation("move");
 }
 
 void Dragon2::StateChange(NowState _State)
@@ -54,6 +60,9 @@ void Dragon2::StateChange(NowState _State)
 			break;
 		case NowState::Attack:
 			attackStart();
+			break;
+		case NowState::Move:
+			MoveStart();
 			break;
 		default:
 			break;
@@ -75,6 +84,9 @@ void Dragon2::StateUpdate(float _DeltaTime)
 	case NowState::Attack:
 		Attack(_DeltaTime);
 		break;
+	case NowState::Move:
+		Move(_DeltaTime);
+		break;
 	default:
 		break;
 	}
@@ -88,12 +100,27 @@ void Dragon2::Attack(float _DeltaTime)
 	}
 	if (true == UEngineInput::IsFree(VK_SPACE))
 	{
+		
+		StateChange(NowState::Idle);
+		return;
 	}
 
-	return;
 
 }
+void Dragon2::Move(float _DeltaTime)
+{
+	{
 
+	}
+	if (true == UEngineInput::IsFree(VK_RIGHT))
+	{
+
+		StateChange(NowState::Idle);
+		return;
+	}
+
+
+}
 void Dragon2::Idle(float _DeltaTime)
 {
 
@@ -104,6 +131,12 @@ void Dragon2::Idle(float _DeltaTime)
 		return;
 	}
 
+	if (true == UEngineInput::IsPress(VK_RIGHT))
+	{
+
+		StateChange(NowState::Move);
+		return;
+	}
 }
 void Dragon2::Tick(float _DeltaTime)
 {

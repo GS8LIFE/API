@@ -15,3 +15,17 @@ enum RenderOrder
 	Player,
 	Title
 };
+
+
+enum movie
+{
+	zero,
+	one,
+	two,
+	three,
+	four,
+	five,
+	six,
+	seveen,
+	selectEnum
+};

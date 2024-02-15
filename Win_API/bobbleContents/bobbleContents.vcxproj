@@ -170,7 +170,7 @@
     <ClInclude Include="DragonTool.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="PlayLevel.h" />
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -181,7 +181,7 @@
     <ClCompile Include="DragonTool.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
-    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

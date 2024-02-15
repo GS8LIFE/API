@@ -22,7 +22,7 @@
     <ClInclude Include="Ceil.h">
       <Filter>Play\PlayLevel</Filter>
     </ClInclude>
-    <ClInclude Include="Title.h" />
+    <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -46,7 +46,7 @@
     <ClCompile Include="Ceil.cpp">
       <Filter>Play\PlayLevel</Filter>
     </ClCompile>
-    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">

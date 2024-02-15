@@ -3,7 +3,7 @@
 #include <EngineBase\EngineDirectory.h>
 #include <EngineBase\EngineFile.h>
 #include <EngineCore\EngineResourcesManager.h>
-
+#include "TitleLevel.h"
 bobbleCore::bobbleCore()
 {
 }
@@ -47,8 +47,20 @@ void bobbleCore::BeginPlay()
 
 	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool.png", 4, 2);
 
+
+	UEngineResourcesManager::GetInst().CuttingImage("Title1.png", 10, 11);
+	UEngineResourcesManager::GetInst().CuttingImage("Title2.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title3.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title4.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title5.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title6.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title7.png", 10, 10);
+	UEngineResourcesManager::GetInst().CuttingImage("Title_select.png", 10, 13);
+
+
+	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 }
 
 void bobbleCore::Tick(float _DeltaTime)

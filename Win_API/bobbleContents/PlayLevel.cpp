@@ -27,6 +27,7 @@ void PlayLevel::BeginPlay()
 		Renderer->SetPosition(WindowScale.Half2D());
 		Renderer->SetScale(WindowScale);
 
+
 		AActor* borderline = SpawnActor<AActor>();
 		UImageRenderer* Renderer1 = borderline->CreateImageRenderer();
 		Renderer1->SetOrder(-8);

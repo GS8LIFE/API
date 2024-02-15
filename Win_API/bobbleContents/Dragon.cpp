@@ -84,7 +84,9 @@ void Dragon::Attack(float _DeltaTime)
 {
 	{
 	}
-	if (true == UEngineInput::IsFree(VK_SPACE))
+	if (
+		true == Renderer->IsCurAnimationEnd()
+		)
 	{
 		StateChange(NowState::Idle);
 		return;

@@ -12,7 +12,7 @@ Dragon::~Dragon()
 void Dragon::BeginPlay()
 {
 	AActor::BeginPlay();
-
+	
 	Renderer = CreateImageRenderer(RenderOrder::Player);
 	Renderer->SetImage("BobbleDragon.png");
 	Renderer->SetTransform({ {320,940}, {100, 100} });

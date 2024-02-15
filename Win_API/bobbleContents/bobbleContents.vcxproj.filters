@@ -23,6 +23,7 @@
       <Filter>Play\PlayLevel</Filter>
     </ClInclude>
     <ClInclude Include="TitleLevel.h" />
+    <ClInclude Include="MovieSeen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -47,6 +48,7 @@
       <Filter>Play\PlayLevel</Filter>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp" />
+    <ClCompile Include="MovieSeen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">

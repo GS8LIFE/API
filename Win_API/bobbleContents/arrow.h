@@ -2,18 +2,18 @@
 #include <EngineCore\Actor.h>
 #include "Enum.h"
 // 설명 :
-class Dragon2 : public AActor
+class arrow : public AActor
 {
 public:
 	// constrcuter destructer
-	Dragon2();
-	~Dragon2();
+	arrow();
+	~arrow();
 
 	// delete Function
-	Dragon2(const Dragon2& _Other) = delete;
-	Dragon2(Dragon2&& _Other) noexcept = delete;
-	Dragon2& operator=(const Dragon2& _Other) = delete;
-	Dragon2& operator=(Dragon2&& _Other) noexcept = delete;
+	arrow(const arrow& _Other) = delete;
+	arrow(arrow&& _Other) noexcept = delete;
+	arrow& operator=(const arrow& _Other) = delete;
+	arrow& operator=(arrow&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
@@ -27,6 +27,7 @@ protected:
 	void Idle(float _DeltaTime);
 	void RMove(float _DeltaTime);
 	void LMove(float _DeltaTime);
+
 	// 상태 시작 함수들
 	void IdleStart();
 	void RMoveStart();

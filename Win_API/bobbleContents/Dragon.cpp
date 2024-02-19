@@ -13,9 +13,9 @@ void Dragon::BeginPlay()
 {
 	AActor::BeginPlay();
 	
-	Renderer = CreateImageRenderer(RenderOrder::Player);
+	Renderer = CreateImageRenderer(RenderOrder::dragon);
 	Renderer->SetImage("BobbleDragon.png");
-	Renderer->SetTransform({ {320,940}, {100, 100} });
+	Renderer->SetTransform({ {297,445}, {60, 60} });
 	Renderer->CreateAnimation("idle", "BobbleDragon.png", 0, 0, 0.1f, true);
 	Renderer->CreateAnimation("wait", "BobbleDragon.png", 0, 2, 0.1f, true);
 	Renderer->CreateAnimation("attack", "BobbleDragon.png", 2, 5, 0.1f, false);
@@ -98,8 +98,6 @@ void Dragon::Attack(float _DeltaTime)
 
 void Dragon::Idle(float _DeltaTime)
 {
-
-
 	if (
 		true == UEngineInput::IsPress(VK_SPACE)
 		)
@@ -107,7 +105,6 @@ void Dragon::Idle(float _DeltaTime)
 		StateChange(NowState::Attack);
 		return;
 	}
-
 }
 void Dragon::Tick(float _DeltaTime)
 {

@@ -1,23 +1,26 @@
 #pragma once
 #include <EngineCore\Actor.h>
-
+#include "Enum.h"
 // Ό³Έν :
-class ceil : public AActor
+class Ceil : public AActor
 {
 public:
 	// constrcuter destructer
-	ceil();
-	~ceil();
+	Ceil();
+	~Ceil();
 
 	// delete Function
-	ceil(const ceil& _Other) = delete;
-	ceil(ceil&& _Other) noexcept = delete;
-	ceil& operator=(const ceil& _Other) = delete;
-	ceil& operator=(ceil&& _Other) noexcept = delete;
+	Ceil(const Ceil& _Other) = delete;
+	Ceil(Ceil&& _Other) noexcept = delete;
+	Ceil& operator=(const Ceil& _Other) = delete;
+	Ceil& operator=(Ceil&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	NowState State = NowState::Idle;
+	std::string CurAnimationName = "Idle";
 
 private:
 	UImageRenderer* Renderer = nullptr;

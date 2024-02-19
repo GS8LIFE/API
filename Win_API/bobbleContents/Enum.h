@@ -7,12 +7,18 @@ enum class NowState
 	Attack,
 	wait,
 	Move,
+	LMove,
 };
 enum RenderOrder
 {
 	Map,
-	Monster,
-	Player,
+	border,
+	Shooter,
+	Arrow,
+	wheel,
+	dragon,
+	bobble,
+	others,
 	Title
 };
 

@@ -162,6 +162,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arrow.h" />
     <ClInclude Include="bobbleCore.h" />
     <ClInclude Include="Ceil.h" />
     <ClInclude Include="Dragon.h" />
@@ -171,9 +172,11 @@
     <ClInclude Include="Enum.h" />
     <ClInclude Include="MovieSeen.h" />
     <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="shooter.h" />
     <ClInclude Include="TitleLevel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="arrow.cpp" />
     <ClCompile Include="bobbleCore.cpp" />
     <ClCompile Include="Ceil.cpp" />
     <ClCompile Include="Dragon.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="MovieSeen.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="shooter.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

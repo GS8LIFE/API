@@ -1,31 +1,29 @@
-#include "ceil.h"
+#include "Ceil.h"
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
 
-ceil::ceil()
+Ceil::Ceil()
 {
 }
 
-ceil::~ceil()
+Ceil::~Ceil()
 {
 }
 
-void ceil::BeginPlay()
+void Ceil::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	Renderer = CreateImageRenderer();
-	Renderer->SetOrder(-9);
-	Renderer->SetAlpha(100);
-	Renderer->SetImage("ceil.png");
-	Renderer->CreateAnimation("Idle", "ceil.png", 0, 11, 1.0f, false);
-	Renderer->SetPosition({ 350,70 });//↓
-	Renderer->SetScale({ 300,1700 }); //발사대 위치와 크기
+	Renderer = CreateImageRenderer(RenderOrder::border);
+	Renderer->SetImage("Ceil.png");
+	Renderer->SetTransform({ {318,35}, {260, 700} });
+	Renderer->CreateAnimation("idle", "Ceil.png", 0, 0, 0.05f, false);
 
 
+	Renderer->ChangeAnimation("idle");
 }
 
-void ceil::Tick(float _DeltaTime)
+void Ceil::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 //버블5번 쏘면 1번 내려오게 하기

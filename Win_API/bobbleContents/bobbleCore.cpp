@@ -14,7 +14,7 @@ bobbleCore::~bobbleCore()
 
 void bobbleCore::BeginPlay()
 {
-	MainWindow.SetWindowScale({ 700, 1000 });
+	MainWindow.SetWindowScale({ 640, 480 });
 
 	UEngineCore::BeginPlay();
 
@@ -30,7 +30,7 @@ void bobbleCore::BeginPlay()
 		UEngineResourcesManager::GetInst().LoadImg(File.GetFullPath());
 	}
 
-	UEngineResourcesManager::GetInst().CuttingImage("BobbleDragon.png", 8, 6);
+	UEngineResourcesManager::GetInst().CuttingImage("BobbleDragon.png", 10, 6);
 	UEngineResourcesManager::GetInst().LoadFolder(NewDir.AppendPath("Dragon"));
 
 	UEngineResourcesManager::GetInst().CuttingImage("map.png", 1, 9);
@@ -42,11 +42,15 @@ void bobbleCore::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("shotting.png", 4, 3);
 	UEngineResourcesManager::GetInst().LoadFolder(NewDir.AppendPath("shotting"));
 
+	UEngineResourcesManager::GetInst().CuttingImage("DragonTool.png", 4, 1);
+
 	UEngineResourcesManager::GetInst().CuttingImage("ceil.png", 12, 10);
 	UEngineResourcesManager::GetInst().LoadFolder(NewDir.AppendPath("ceil"));
 
-	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool.png", 4, 2);
+	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool_Left.png", 4, 2);
+	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool_Right.png", 4, 2);
 
+	UEngineResourcesManager::GetInst().CuttingImage("arrow.png", 10, 13);
 
 	UEngineResourcesManager::GetInst().CuttingImage("Title1.png", 10, 11);
 	UEngineResourcesManager::GetInst().CuttingImage("Title2.png", 10, 10);
@@ -60,7 +64,7 @@ void bobbleCore::BeginPlay()
 
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
-	ChangeLevel("Title");
+	ChangeLevel("Play");
 }
 
 void bobbleCore::Tick(float _DeltaTime)

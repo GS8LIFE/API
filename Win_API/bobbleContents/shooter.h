@@ -2,18 +2,18 @@
 #include <EngineCore\Actor.h>
 #include "Enum.h"
 // 설명 :
-class Dragon2 : public AActor
+class shooter : public AActor
 {
 public:
 	// constrcuter destructer
-	Dragon2();
-	~Dragon2();
+	shooter();
+	~shooter();
 
 	// delete Function
-	Dragon2(const Dragon2& _Other) = delete;
-	Dragon2(Dragon2&& _Other) noexcept = delete;
-	Dragon2& operator=(const Dragon2& _Other) = delete;
-	Dragon2& operator=(Dragon2&& _Other) noexcept = delete;
+	shooter(const shooter& _Other) = delete;
+	shooter(shooter&& _Other) noexcept = delete;
+	shooter& operator=(const shooter& _Other) = delete;
+	shooter& operator=(shooter&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
@@ -25,12 +25,11 @@ protected:
 
 	// 상태 함수들
 	void Idle(float _DeltaTime);
-	void RMove(float _DeltaTime);
-	void LMove(float _DeltaTime);
+	void Move(float _DeltaTime);
+
 	// 상태 시작 함수들
 	void IdleStart();
-	void RMoveStart();
-	void LMoveStart();
+	void MoveStart();
 
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";

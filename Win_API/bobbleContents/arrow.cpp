@@ -1,24 +1,24 @@
-#include "Dragon2Tool.h"
+#include "arrow.h"
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
 #include "Enum.h"
-Dragon2Tool::Dragon2Tool()
+arrow::arrow()
 {
 }
 
-Dragon2Tool::~Dragon2Tool()
+arrow::~arrow()
 {
 }
-void Dragon2Tool::BeginPlay()
+void arrow::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	Renderer = CreateImageRenderer(RenderOrder::wheel);
-	Renderer->SetImage("Dragon2Tool_Right.png");
-	Renderer->SetTransform({ {375,445}, {40, 40} });
-	Renderer->CreateAnimation("idle", "Dragon2Tool_Right.png", 0, 0, 0.05f, false);
-	Renderer->CreateAnimation("Rmove", "Dragon2Tool_Right.png", 0, 7, 0.05f, true);
-	Renderer->CreateAnimation("Lmove", "Dragon2Tool_Left.png", 0, 7, 0.05f, true);
+	Renderer = CreateImageRenderer(RenderOrder::Arrow);
+	Renderer->SetImage("arrow.png");
+	Renderer->SetTransform({ {328,415}, {200, 200} });
+	Renderer->CreateAnimation("idle", "arrow.png", 0, 0, 0.05f, false);
+	Renderer->CreateAnimation("Rmove", "arrow.png", 0, 63, 0.05f, false);
+	Renderer->CreateAnimation("Lmove", "arrow.png", 65, 127, 0.05f, false);
 
 
 
@@ -26,20 +26,20 @@ void Dragon2Tool::BeginPlay()
 	StateChange(NowState::Idle);
 }
 
-void Dragon2Tool::IdleStart()
+void arrow::IdleStart()
 {
 	Renderer->ChangeAnimation("idle");
 }
 
-void Dragon2Tool::RMoveStart()
+void arrow::RMoveStart()
 {
 	Renderer->ChangeAnimation("Rmove");
 }
-void Dragon2Tool::LMoveStart()
+void arrow::LMoveStart()
 {
 	Renderer->ChangeAnimation("Lmove");
 }
-void Dragon2Tool::StateChange(NowState _State)
+void arrow::StateChange(NowState _State)
 {
 	if (State != _State)
 	{
@@ -64,7 +64,7 @@ void Dragon2Tool::StateChange(NowState _State)
 
 }
 
-void Dragon2Tool::StateUpdate(float _DeltaTime)
+void arrow::StateUpdate(float _DeltaTime)
 {
 	switch (State)
 	{
@@ -83,7 +83,7 @@ void Dragon2Tool::StateUpdate(float _DeltaTime)
 
 
 }
-void Dragon2Tool::RMove(float _DeltaTime)
+void arrow::RMove(float _DeltaTime)
 {
 	if (true == UEngineInput::IsFree(VK_RIGHT))
 	{
@@ -91,7 +91,7 @@ void Dragon2Tool::RMove(float _DeltaTime)
 		return;
 	}
 }
-void Dragon2Tool::LMove(float _DeltaTime)
+void arrow::LMove(float _DeltaTime)
 {
 	if (true == UEngineInput::IsFree(VK_LEFT))
 	{
@@ -99,7 +99,7 @@ void Dragon2Tool::LMove(float _DeltaTime)
 		return;
 	}
 }
-void Dragon2Tool::Idle(float _DeltaTime)
+void arrow::Idle(float _DeltaTime)
 {
 	if (true == UEngineInput::IsPress(VK_LEFT))
 	{
@@ -112,7 +112,7 @@ void Dragon2Tool::Idle(float _DeltaTime)
 		return;
 	}
 }
-void Dragon2Tool::Tick(float _DeltaTime)
+void arrow::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 

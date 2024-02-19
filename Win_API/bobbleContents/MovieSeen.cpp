@@ -246,9 +246,9 @@ void MovieSeen::select(float _DeltaTime)
 }
 void MovieSeen::Tick(float _DeltaTime)
 {
-	if (UEngineInput::IsDown('P'))
+	if (UEngineInput::IsDown('R'))
 	{
-		GEngine->ChangeLevel("Play");
+		StateChange(movie::zero);
 	}
 	StateUpdate(_DeltaTime);
 }

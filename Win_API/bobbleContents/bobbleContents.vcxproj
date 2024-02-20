@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arrow.h" />
+    <ClInclude Include="Bobble.h" />
     <ClInclude Include="bobbleCore.h" />
     <ClInclude Include="Ceil.h" />
     <ClInclude Include="Dragon.h" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arrow.cpp" />
+    <ClCompile Include="Bobble.cpp" />
     <ClCompile Include="bobbleCore.cpp" />
     <ClCompile Include="Ceil.cpp" />
     <ClCompile Include="Dragon.cpp" />

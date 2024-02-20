@@ -17,7 +17,6 @@
       <Filter>Play\Dragon</Filter>
     </ClInclude>
     <ClInclude Include="TitleLevel.h" />
-    <ClInclude Include="arrow.h" />
     <ClInclude Include="PlayLevel.h">
       <Filter>Play\PlayLevel</Filter>
     </ClInclude>
@@ -29,6 +28,12 @@
     </ClInclude>
     <ClInclude Include="MovieSeen.h">
       <Filter>Play\PlayLevel\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Bobble.h">
+      <Filter>Play\Bobble</Filter>
+    </ClInclude>
+    <ClInclude Include="arrow.h">
+      <Filter>Play\arrow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,7 +53,6 @@
       <Filter>Play\Dragon</Filter>
     </ClCompile>
     <ClCompile Include="TitleLevel.cpp" />
-    <ClCompile Include="arrow.cpp" />
     <ClCompile Include="PlayLevel.cpp">
       <Filter>Play\PlayLevel</Filter>
     </ClCompile>
@@ -60,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="MovieSeen.cpp">
       <Filter>Play\PlayLevel\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Bobble.cpp">
+      <Filter>Play\Bobble</Filter>
+    </ClCompile>
+    <ClCompile Include="arrow.cpp">
+      <Filter>Play\arrow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +87,12 @@
     </Filter>
     <Filter Include="Play\PlayLevel\animation">
       <UniqueIdentifier>{1f7018cc-d7cd-4054-9fb0-b208339d21f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\Bobble">
+      <UniqueIdentifier>{1a744074-3fc6-4ff8-92be-fc525d2a7dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play\arrow">
+      <UniqueIdentifier>{3ec4d572-8a80-449e-b0e0-8fd4216e6090}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

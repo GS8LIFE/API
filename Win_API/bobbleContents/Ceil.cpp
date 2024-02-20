@@ -26,5 +26,11 @@ void Ceil::BeginPlay()
 void Ceil::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
+
+	if (true == UEngineInput::IsPress(VK_DOWN))
+	{
+
+		return;
+	}
 //버블5번 쏘면 1번 내려오게 하기
 }

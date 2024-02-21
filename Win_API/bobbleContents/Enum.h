@@ -1,4 +1,11 @@
 #pragma once
+class Enum
+{
+public:
+	float Angle = 0.0f;
+};
+
+
 
 enum class NowState
 {

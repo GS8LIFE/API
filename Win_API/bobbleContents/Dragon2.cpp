@@ -2,6 +2,7 @@
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
 #include "Enum.h"
+#include "arrow.h"
 Dragon2::Dragon2()
 {
 }
@@ -86,12 +87,20 @@ void Dragon2::StateUpdate(float _DeltaTime)
 
 void Dragon2::Idle(float _DeltaTime)
 {
-	if (true == UEngineInput::IsPress(VK_LEFT))
+	if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsPress(VK_RIGHT))
+	{
+			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
+			{
+				StateChange(NowState::LMove);
+				return;
+			}
+	}
+	if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
 	{
 		StateChange(NowState::LMove);
 		return;
 	}
-	if (true == UEngineInput::IsPress(VK_RIGHT))
+	if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 90)
 	{
 		StateChange(NowState::Move);
 		return;
@@ -100,7 +109,15 @@ void Dragon2::Idle(float _DeltaTime)
 
 void Dragon2::LMove(float _DeltaTime)
 {
-	if (true == UEngineInput::IsFree(VK_LEFT))
+	if (Angle >= -90)
+	{
+		if (true == UEngineInput::IsFree(VK_LEFT))
+		{
+			StateChange(NowState::Idle);
+			return;
+		}
+	}
+	else if (Angle <= -90)
 	{
 		StateChange(NowState::Idle);
 		return;
@@ -108,7 +125,14 @@ void Dragon2::LMove(float _DeltaTime)
 }
 void Dragon2::RMove(float _DeltaTime)
 {
-	if (true == UEngineInput::IsFree(VK_RIGHT))
+	if (Angle <= 90) {
+		if (true == UEngineInput::IsFree(VK_RIGHT))
+		{
+			StateChange(NowState::Idle);
+			return;
+		}
+	}
+	else if(Angle >=90)
 	{
 		StateChange(NowState::Idle);
 		return;
@@ -117,7 +141,6 @@ void Dragon2::RMove(float _DeltaTime)
 void Dragon2::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
-
 	StateUpdate(_DeltaTime);
 
 }

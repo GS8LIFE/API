@@ -4,6 +4,7 @@
 #include <EngineBase\EngineFile.h>
 #include <EngineCore\EngineResourcesManager.h>
 #include "TitleLevel.h"
+#include <EnginePlatform\WindowImage.h>
 bobbleCore::bobbleCore()
 {
 }
@@ -50,7 +51,6 @@ void bobbleCore::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool_Left.png", 4, 2);
 	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool.png", 4, 2);
 
-	UEngineResourcesManager::GetInst().CuttingImage("arrow.png", 10, 13);
 
 
 	UEngineResourcesManager::GetInst().CuttingImage("Title1.png", 10, 11);
@@ -62,6 +62,9 @@ void bobbleCore::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("Title7.png", 10, 7);
 	UEngineResourcesManager::GetInst().CuttingImage("Title_select.png", 10, 13);
 
+	UWindowImage* Rot = UEngineResourcesManager::GetInst().FindImg("arrow.png");
+	UWindowImage* Mask = UEngineResourcesManager::GetInst().FindImg("arrow_Mask.bmp");
+	Rot->SetRotationMaskImage(Mask);
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	ChangeLevel("Play");

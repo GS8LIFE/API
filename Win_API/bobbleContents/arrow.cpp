@@ -13,31 +13,30 @@ void arrow::BeginPlay()
 {
 	AActor::BeginPlay();
 
-	Renderer = CreateImageRenderer(RenderOrder::Arrow);
-	Renderer->SetImage("arrow.png");
-	Renderer->SetTransform({ {328,415}, {200, 200} });
-	Renderer->CreateAnimation("idle", "arrow.png", 0, 0, 0.05f, false);
-	Renderer->CreateAnimation("Rmove", "arrow.png", 0, 63, 0.05f, false);
-	Renderer->CreateAnimation("Lmove", "arrow.png", 65, 127, 0.05f, false);
+	//Renderer->SetTransform({ {328,415}, {200, 200} });
+	//Renderer->CreateAnimation("idle", "arrow.png", 0, 0, 0.05f, false);
+	//Renderer->CreateAnimation("Rmove", "arrow.png", 0, 63, 0.05f, false);
+	//Renderer->CreateAnimation("Lmove", "arrow.png", 65, 127, 0.05f, false);
+	
+	DirRenderer = CreateImageRenderer(RenderOrder::Arrow);
+	DirRenderer->SetImage("arrow.png");
+	// DirRenderer->SetTransform({ {0,0}, FVector{51, 93} * 3 });
+	DirRenderer->SetTransform({ {328,410}, FVector{51, 93} *2 });
+	
 
 
-
-	Renderer->ChangeAnimation("idle");
 	StateChange(NowState::Idle);
 }
 
 void arrow::IdleStart()
 {
-	Renderer->ChangeAnimation("idle");
 }
 
 void arrow::RMoveStart()
 {
-	Renderer->ChangeAnimation("Rmove");
 }
 void arrow::LMoveStart()
 {
-	Renderer->ChangeAnimation("Lmove");
 }
 void arrow::StateChange(NowState _State)
 {
@@ -112,9 +111,31 @@ void arrow::Idle(float _DeltaTime)
 		return;
 	}
 }
-void arrow::Tick(float _DeltaTime)
+void arrow::Tick(float _DeltaTime) 
 {
 	AActor::Tick(_DeltaTime);
+
+	//float4 Dir = float4::DegToDir(Angle);
+
+	DirRenderer->SetAngle(Angle);
+	if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsPress(VK_RIGHT))
+	{
+			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
+			{
+				Angle -= _DeltaTime * 80.0f;
+			}
+	}
+		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
+		{
+			Angle -= _DeltaTime * 80.0f;
+		}
+		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 90)
+		{
+			Angle += _DeltaTime * 80.0f;
+		}
+	
+
+
 
 	StateUpdate(_DeltaTime);
 

@@ -2,7 +2,7 @@
 #include <EngineCore\Actor.h>
 #include "Enum.h"
 // Ό³Έν :
-class arrow : public AActor
+class arrow : public AActor , public Enum
 {
 public:
 	// constrcuter destructer
@@ -38,6 +38,7 @@ protected:
 
 private:
 	UImageRenderer* Renderer = nullptr;
+	UImageRenderer* DirRenderer = nullptr;
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
 

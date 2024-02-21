@@ -42,7 +42,6 @@ void PlayLevel::BeginPlay()
 		Renderer3->SetImage("bar.png");
 		Renderer3->SetTransform({ {325,400}, {272, 60} });
 
-	
 	arrow* Arrow = SpawnActor<arrow>();
 	shooter* Shooter = SpawnActor<shooter>();
 	Ceil* ceiling = SpawnActor<Ceil>();

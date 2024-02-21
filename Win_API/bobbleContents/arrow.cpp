@@ -82,6 +82,7 @@ void arrow::StateUpdate(float _DeltaTime)
 
 
 }
+
 void arrow::RMove(float _DeltaTime)
 {
 	if (true == UEngineInput::IsFree(VK_RIGHT))
@@ -111,6 +112,13 @@ void arrow::Idle(float _DeltaTime)
 		return;
 	}
 }
+
+
+
+void arrow::getAngle(float* _Angle, float _Value)
+{
+	*_Angle += _Value;
+}
 void arrow::Tick(float _DeltaTime) 
 {
 	AActor::Tick(_DeltaTime);
@@ -122,16 +130,16 @@ void arrow::Tick(float _DeltaTime)
 	{
 			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
 			{
-				Angle -= _DeltaTime * 80.0f;
+				getAngle(&Angle, -_DeltaTime * 80.0f);
 			}
 	}
 		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
 		{
-			Angle -= _DeltaTime * 80.0f;
+			getAngle(&Angle, -_DeltaTime * 80.0f);
 		}
 		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 90)
 		{
-			Angle += _DeltaTime * 80.0f;
+			getAngle(&Angle, _DeltaTime * 80.0f);
 		}
 	
 

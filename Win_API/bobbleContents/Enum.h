@@ -2,6 +2,8 @@
 class Enum
 {
 public:
+	float* AnglePtr = &Angle;
+protected:
 	float Angle = 0.0f;
 };
 

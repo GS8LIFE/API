@@ -38,7 +38,7 @@ void Bobble::get_bubble(char _color)
 	case 'S':
 		break;
 	case 'R':
-		
+		Renderer->ChangeAnimation("R");
 		break;
 	case 'P':
 		break;

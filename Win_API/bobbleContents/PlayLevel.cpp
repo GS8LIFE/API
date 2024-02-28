@@ -69,6 +69,7 @@ void PlayLevel::BeginPlay()
 			{
 				continue;
 			}
+			
 			if (row_idx % 2 == 1)
 			{
 				Bobble* NewB = SpawnActor<Bobble>();

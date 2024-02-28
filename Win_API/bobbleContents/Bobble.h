@@ -37,7 +37,7 @@ protected:
 	std::string CurAnimationName = "Idle";
 
 private:
-	// UImageRenderer* Renderer = nullptr;
+	UImageRenderer* Renderer = nullptr;
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
 

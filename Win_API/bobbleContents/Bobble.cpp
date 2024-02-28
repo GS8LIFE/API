@@ -16,7 +16,6 @@ void Bobble::BeginPlay()
 	AActor::BeginPlay();
 	
 		UImageRenderer* Renderer = CreateImageRenderer(RenderOrder::bobble);
-		Renderer = CreateImageRenderer(RenderOrder::bobble);
 		Renderer->SetImage("Bobble.png");
 		Renderer->SetTransform({ {0,0}, {72, 72} });
 		Renderer->CreateAnimation("idle", "Bobble.png", 1, 1, 0.1f, true);
@@ -33,6 +32,7 @@ void Bobble::BeginPlay()
 
 void Bobble::get_bubble(char _color)
 {
+	
 	switch (_color)
 	{
 	case 'S':

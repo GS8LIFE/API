@@ -20,8 +20,6 @@ void Dragon::BeginPlay()
 	Renderer->CreateAnimation("wait", "BobbleDragon.png", 0, 2, 0.1f, true);
 	Renderer->CreateAnimation("attack", "BobbleDragon.png", 2, 5, 0.1f, false);
 
-
-
 	StateChange(NowState::Idle);
 }
 

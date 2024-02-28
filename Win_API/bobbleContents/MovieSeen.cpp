@@ -27,8 +27,8 @@ void MovieSeen::BeginPlay()
 	Renderer->CreateAnimation("7", "Title7.png", 0, 66, 0.03f, false);
 	Renderer->CreateAnimation("select", "Title_select.png", 0, 129, 0.03f, true);
 
-	Renderer->ChangeAnimation("zero");
-	StateChange(movie::zero);
+	Renderer->ChangeAnimation("1");
+	StateChange(movie::one);
 }
 
 void MovieSeen::zeroStart()

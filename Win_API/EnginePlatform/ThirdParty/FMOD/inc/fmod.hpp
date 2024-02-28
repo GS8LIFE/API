@@ -325,7 +325,9 @@ namespace FMOD
         FMOD_RESULT F_API get3DCustomRolloff     (FMOD_VECTOR **points, int *numpoints);
         FMOD_RESULT F_API set3DOcclusion         (float directocclusion, float reverbocclusion);
         FMOD_RESULT F_API get3DOcclusion         (float *directocclusion, float *reverbocclusion);
-        FMOD_RESULT F_API set3DSpread            (float angle);
+        FMOD_RESULT F_API set3DSpread            (float 
+        
+        );
         FMOD_RESULT F_API get3DSpread            (float *angle);
         FMOD_RESULT F_API set3DLevel             (float level);
         FMOD_RESULT F_API get3DLevel             (float *level);

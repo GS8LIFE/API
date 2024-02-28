@@ -17,8 +17,8 @@ void Dragon2Tool::BeginPlay()
 	Renderer->SetImage("Dragon2Tool.png");
 	Renderer->SetTransform({ {375,445}, {40, 40} });
 	Renderer->CreateAnimation("idle", "Dragon2Tool.png", 0, 0, 0.05f, false);
-	Renderer->CreateAnimation("Rmove", "Dragon2Tool.png", 1, 1, 0.05f, false);
-	Renderer->CreateAnimation("Lmove", "Dragon2Tool.png", 2, 2, 0.05f, false);
+	Renderer->CreateAnimation("Rmove", "Dragon2Tool.png", 0, 7, 0.05f, true);
+	Renderer->CreateAnimation("Lmove", "Dragon2Tool_Left.png", 0, 7, 0.05f, true);
 
 
 
@@ -47,7 +47,7 @@ void Dragon2Tool::StateChange(NowState _State)
 		{
 		case NowState::Idle:
 			IdleStart();
-			break;
+			break;	
 		case NowState::Move:
 			RMoveStart();
 			break;

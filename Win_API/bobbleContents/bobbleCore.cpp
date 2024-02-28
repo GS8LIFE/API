@@ -51,7 +51,7 @@ void bobbleCore::BeginPlay()
 	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool_Left.png", 4, 2);
 	UEngineResourcesManager::GetInst().CuttingImage("Dragon2Tool.png", 4, 2);
 
-
+	UEngineResourcesManager::GetInst().CuttingImage("Bobble.png", 12, 2);
 
 	UEngineResourcesManager::GetInst().CuttingImage("Title1.png", 10, 11);
 	UEngineResourcesManager::GetInst().CuttingImage("Title2.png", 10, 10);
@@ -64,7 +64,7 @@ void bobbleCore::BeginPlay()
 
 	UWindowImage* Rot = UEngineResourcesManager::GetInst().FindImg("arrow.png");
 	UWindowImage* Mask = UEngineResourcesManager::GetInst().FindImg("arrow_Mask.bmp");
-	Rot->SetRotationMaskImage(Mask);
+	Rot->SetRotationMaskImage(0, Mask, 0);
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
 	ChangeLevel("Play");

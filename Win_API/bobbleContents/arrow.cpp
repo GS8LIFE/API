@@ -20,7 +20,6 @@ void arrow::BeginPlay()
 	
 	DirRenderer = CreateImageRenderer(RenderOrder::Arrow);
 	DirRenderer->SetImage("arrow.png");
-	// DirRenderer->SetTransform({ {0,0}, FVector{51, 93} * 3 });
 	DirRenderer->SetTransform({ {328,410}, FVector{51, 93} *2 });
 	
 
@@ -128,16 +127,16 @@ void arrow::Tick(float _DeltaTime)
 	DirRenderer->SetAngle(Angle);
 	if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsPress(VK_RIGHT))
 	{
-			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
+			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
 			{
 				getAngle(&Angle, -_DeltaTime * 80.0f);
 			}
 	}
-		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -90)
+		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
 		{
 			getAngle(&Angle, -_DeltaTime * 80.0f);
 		}
-		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 90)
+		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 80)
 		{
 			getAngle(&Angle, _DeltaTime * 80.0f);
 		}

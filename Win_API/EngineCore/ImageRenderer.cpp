@@ -90,6 +90,17 @@ void UImageRenderer::BeginPlay()
 	USceneComponent::BeginPlay();
 }
 
+void UImageRenderer::Tick(float _DeltaTime)
+{
+	USceneComponent::Tick(_DeltaTime);
+
+	if (nullptr != CurAnimation)
+	{
+		Image = CurAnimation->Image;
+		InfoIndex = CurAnimation->Update(_DeltaTime);
+	}
+}
+
 void UImageRenderer::SetImage(std::string_view _Name, int _InfoIndex /*= 0*/)
 {
 	Image = UEngineResourcesManager::GetInst().FindImg(_Name);
@@ -125,13 +136,33 @@ void UImageRenderer::CreateAnimation(
 
 }
 
-
 void UImageRenderer::CreateAnimation(
 	std::string_view _AnimationName,
 	std::string_view _ImageName,
 	std::vector<int> _Indexs,
 	float _Inter,
 	bool _Loop/* = true*/
+)
+{
+	
+	std::vector<float> Inters;
+	//          12         0
+	int Size = static_cast<int>(_Indexs.size());
+	Inters.reserve(Size);
+	for (int i = 0; i <= Size; i++)
+	{
+		Inters.push_back(_Inter);
+	}
+
+	CreateAnimation(_AnimationName, _ImageName, _Indexs, Inters, _Loop);
+}
+
+void UImageRenderer::CreateAnimation(
+	std::string_view _AnimationName,
+	std::string_view _ImageName,
+	std::vector<int> _Indexs,
+	std::vector<float> _Inters,
+	bool _Loop /*= true*/
 )
 {
 	UWindowImage* FindImage = UEngineResourcesManager::GetInst().FindImg(_ImageName);
@@ -156,15 +187,7 @@ void UImageRenderer::CreateAnimation(
 	Info.CurFrame = 0;
 	Info.CurTime = 0.0f;
 	Info.Loop = _Loop;
-
-	//          12         0
-	int Size = static_cast<int>(_Indexs.size());
-	Info.Times.reserve(Size);
-	for (int i = 0; i <= Size; i++)
-	{
-		Info.Times.push_back(_Inter);
-	}
-
+	Info.Times = _Inters;
 	Info.Indexs = _Indexs;
 }
 
@@ -220,13 +243,18 @@ void UImageRenderer::TextRender(float _DeltaTime)
 {
 	FTransform RendererTrans = GetRenderTransForm();
 
-	// 글자 수
-	float TextCount = static_cast<float>(Text.size());
-
-	//RendererTrans.AddPosition(float4::Up * Size * 0.5f);
-	// RendererTrans.AddPosition(float4::Left * (Size * 0.5f) * (TextCount * 0.5f));
-
-	GEngine->MainWindow.GetBackBufferImage()->TextCopy(Text, Font, Size, RendererTrans, TextColor);
+	switch (TextEffect)
+	{
+	case 1:
+		GEngine->MainWindow.GetBackBufferImage()->TextCopy(Text, Font, Size, RendererTrans, TextColor, TextColor2);
+		break;
+	case 2:
+		GEngine->MainWindow.GetBackBufferImage()->TextCopyBold(Text, Font, Size, RendererTrans, TextColor);
+		break;
+	default:
+		GEngine->MainWindow.GetBackBufferImage()->TextCopy(Text, Font, Size, RendererTrans, TextColor);
+		break;
+	}
 }
 
 void UImageRenderer::ImageRender(float _DeltaTime)
@@ -235,12 +263,6 @@ void UImageRenderer::ImageRender(float _DeltaTime)
 	if (nullptr == Image)
 	{
 		MsgBoxAssert("이미지가 존재하지 않는 랜더러 입니다");
-	}
-
-	if (nullptr != CurAnimation)
-	{
-		Image = CurAnimation->Image;
-		InfoIndex = CurAnimation->Update(_DeltaTime);
 	}
 
 	FTransform RendererTrans = GetRenderTransForm();

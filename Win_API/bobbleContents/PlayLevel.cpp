@@ -6,6 +6,7 @@
 #include "Ceil.h"
 #include "shooter.h"
 #include "arrow.h"
+#include "Bobble.h"
 #include <EngineCore\EngineCore.h>
 #include "Enum.h"
 int a = 270;
@@ -49,6 +50,7 @@ void PlayLevel::BeginPlay()
 	Dragon2* Player2 = SpawnActor<Dragon2>();
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
+	Bobble* bobble1 = SpawnActor<Bobble>();
 }
 
 void PlayLevel::Tick(float _DeltaTime)

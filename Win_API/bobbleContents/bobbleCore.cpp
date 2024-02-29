@@ -67,7 +67,7 @@ void bobbleCore::BeginPlay()
 	Rot->SetRotationMaskImage(0, Mask, 0);
 	CreateLevel<TitleLevel>("Title");
 	CreateLevel<PlayLevel>("Play");
-	ChangeLevel("Play");
+	ChangeLevel("Title");
 }
 
 void bobbleCore::Tick(float _DeltaTime)

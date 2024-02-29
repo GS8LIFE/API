@@ -35,6 +35,9 @@
     <ClInclude Include="arrow.h">
       <Filter>Play\arrow</Filter>
     </ClInclude>
+    <ClInclude Include="Bobblefire.h">
+      <Filter>Play\Bobble</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="arrow.cpp">
       <Filter>Play\arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="Bobblefire.cpp">
+      <Filter>Play\Bobble</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

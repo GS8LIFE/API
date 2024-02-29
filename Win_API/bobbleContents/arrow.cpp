@@ -127,7 +127,7 @@ void arrow::Tick(float _DeltaTime)
 	DirRenderer->SetAngle(Angle);
 	if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsPress(VK_RIGHT))
 	{
-			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
+			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)	
 			{
 				getAngle(&Angle, -_DeltaTime * 80.0f);
 			}

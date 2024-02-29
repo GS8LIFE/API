@@ -41,7 +41,8 @@ private:
 	UImageRenderer* DirRenderer = nullptr;
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
-
+	char cur_bubble = '.';
+	bool fire = false;
 	float AlphaTime = 0.0f;
 	bool Dir = false;
 

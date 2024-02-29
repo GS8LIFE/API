@@ -53,11 +53,12 @@ void PlayLevel::BeginPlay()
 
 	//버블 배열
 	std::map<int, std::vector<char>> map;
-	map[0] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', 'G' };
-	map[1] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', '/' };
-	map[2] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'R', '.' };
-	map[3] = { 'B', 'B', 'G', 'G', 'R', 'R', 'Y', '/' };
-	map[4] = { 'B', 'G', 'G', 'R', 'R', 'Y', 'Y', 'R' };
+	map[0] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', 'G' };
+	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
+	map[2] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'R', '.' };
+	map[3] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', '/' };
+	map[4] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', 'R' };
+	map[5] = { 'R', 'S', 'Y', 'G', 'O', 'P', 'B', 'W' };
 
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{

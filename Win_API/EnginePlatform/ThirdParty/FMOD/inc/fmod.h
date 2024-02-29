@@ -309,9 +309,7 @@ FMOD_RESULT F_API FMOD_Channel_Set3DCustomRolloff       (FMOD_CHANNEL *channel, 
 FMOD_RESULT F_API FMOD_Channel_Get3DCustomRolloff       (FMOD_CHANNEL *channel, FMOD_VECTOR **points, int *numpoints);
 FMOD_RESULT F_API FMOD_Channel_Set3DOcclusion           (FMOD_CHANNEL *channel, float directocclusion, float reverbocclusion);
 FMOD_RESULT F_API FMOD_Channel_Get3DOcclusion           (FMOD_CHANNEL *channel, float *directocclusion, float *reverbocclusion);
-FMOD_RESULT F_API FMOD_Channel_Set3DSpread              (FMOD_CHANNEL *channel, float 
-
-);
+FMOD_RESULT F_API FMOD_Channel_Set3DSpread              (FMOD_CHANNEL *channel, float angle);
 FMOD_RESULT F_API FMOD_Channel_Get3DSpread              (FMOD_CHANNEL *channel, float *angle);
 FMOD_RESULT F_API FMOD_Channel_Set3DLevel               (FMOD_CHANNEL *channel, float level);
 FMOD_RESULT F_API FMOD_Channel_Get3DLevel               (FMOD_CHANNEL *channel, float *level);

@@ -14,11 +14,10 @@ public:
 	Bobble(Bobble&& _Other) noexcept = delete;
 	Bobble& operator=(const Bobble& _Other) = delete;
 	Bobble& operator=(Bobble&& _Other) noexcept = delete;
-
+	void get_bubble(char _color);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void get_bubble(char _color);
 	
 	// 상태 주요 업데이트
 	void StateChange(NowState _State);

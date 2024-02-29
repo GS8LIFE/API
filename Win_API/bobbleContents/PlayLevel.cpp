@@ -50,11 +50,13 @@ void PlayLevel::BeginPlay()
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
 
+
+	//버블 배열
 	std::map<int, std::vector<char>> map;
 	map[0] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', 'G' };
-	map[1] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', '/' };
-	map[2] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'R', '.' };
-	map[3] = { 'B', 'B', 'G', 'G', 'R', 'R', 'Y', '/' };
+	map[1] = { 'R', 'R', 'Y', 'Y', '.', 'B', 'G', '/' };
+	map[2] = { 'R', 'R', 'Y', '.', 'B', 'B', 'R', '.' };
+	map[3] = { 'B', 'B', 'G', 'G', '.', 'R', 'Y', '/' };
 	map[4] = { 'B', 'G', 'G', 'R', 'R', 'Y', 'Y', 'R' };
 
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
@@ -81,7 +83,6 @@ void PlayLevel::BeginPlay()
 				NewB->SetActorLocation({ 205 + (32 * col_idx), 65 + (32 * row_idx) });
 			}
 
-			//버블 추가하는 코드
 		}
 	}
 }

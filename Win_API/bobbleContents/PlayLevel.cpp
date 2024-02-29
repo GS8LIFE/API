@@ -54,9 +54,9 @@ void PlayLevel::BeginPlay()
 	//버블 배열
 	std::map<int, std::vector<char>> map;
 	map[0] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', 'G' };
-	map[1] = { 'R', 'R', 'Y', 'Y', '.', 'B', 'G', '/' };
-	map[2] = { 'R', 'R', 'Y', '.', 'B', 'B', 'R', '.' };
-	map[3] = { 'B', 'B', 'G', 'G', '.', 'R', 'Y', '/' };
+	map[1] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'G', '/' };
+	map[2] = { 'R', 'R', 'Y', 'Y', 'B', 'B', 'R', '.' };
+	map[3] = { 'B', 'B', 'G', 'G', 'R', 'R', 'Y', '/' };
 	map[4] = { 'B', 'G', 'G', 'R', 'R', 'Y', 'Y', 'R' };
 
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
@@ -75,11 +75,13 @@ void PlayLevel::BeginPlay()
 			if (row_idx % 2 == 1)
 			{
 				Bobble* NewB = SpawnActor<Bobble>();
+				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 221 + (32 * col_idx), 65 + (32 * row_idx) });
 			}
 			else
 			{
 				Bobble* NewB = SpawnActor<Bobble>();
+				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 205 + (32 * col_idx), 65 + (32 * row_idx) });
 			}
 

@@ -16,7 +16,6 @@ public:
 	Bobble& operator=(Bobble&& _Other) noexcept = delete;
 	void get_bubble(char _color);
 protected:
-	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 	
 	// 상태 주요 업데이트

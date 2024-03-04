@@ -4,7 +4,7 @@
 #include <EngineBase/EngineRandom.h>
 
 // Ό³Έν :
-class Bobble : public AActor, public UEngineRandom
+class Bobble : public AActor, public UEngineRandom, public Enum
 {
 public:
 	// constrcuter destructer

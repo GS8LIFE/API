@@ -35,7 +35,7 @@ void Bobble::BeginPlay()
 	Renderer->CreateAnimation("Omove", "Bobble.png", 124, 126, 0.2f, true);
 	Renderer->CreateAnimation("Bmove", "Bobble.png", 149, 151, 0.2f, true);
 	Renderer->CreateAnimation("Wmove", "Bobble.png", 174, 176, 0.2f, true);
-
+	Renderer->SetAngle(Angle);
 	StateChange(NowState::Idle);
 }
 void Bobble::get_bubble(char _color)

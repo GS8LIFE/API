@@ -114,7 +114,7 @@ void arrow::Idle(float _DeltaTime)
 
 
 
-void arrow::getAngle(float* _Angle, float _Value)
+void arrow::setAngle(float* _Angle, float _Value)
 {
 	*_Angle += _Value;
 }
@@ -129,16 +129,16 @@ void arrow::Tick(float _DeltaTime)
 	{
 			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)	
 			{
-				getAngle(&Angle, -_DeltaTime * 80.0f);
+				setAngle(&Angle, -_DeltaTime * 80.0f);
 			}
 	}
 		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
 		{
-			getAngle(&Angle, -_DeltaTime * 80.0f);
+			setAngle(&Angle, -_DeltaTime * 80.0f);
 		}
 		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 80)
 		{
-			getAngle(&Angle, _DeltaTime * 80.0f);
+			setAngle(&Angle, _DeltaTime * 80.0f);
 		}
 	
 

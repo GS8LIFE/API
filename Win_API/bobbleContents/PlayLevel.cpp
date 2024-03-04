@@ -88,10 +88,28 @@ void PlayLevel::BeginPlay()
 	}
 }
 
-	void PlayLevel::Tick(float _DeltaTime) {
+void PlayLevel::fire_bobble()
+{
+	Bobble* firebobble = SpawnActor<Bobble>();
+	firebobble->SetActorLocation({ 328,410 });
+	cur_bobble = true;
+}
+
+void PlayLevel::fired_bobble()
+{
+	
+}
+void PlayLevel::Tick(float _DeltaTime) {
 	ULevel::Tick(_DeltaTime);
 
-	if (UEngineInput::IsDown('Q'))
+	if (cur_bobble == false)
 	{
+		fire_bobble();
 	}	
+
+	if (fire == true)
+	{
+		fired_bobble();
+		fire == false;
+	}
 }

@@ -8,7 +8,7 @@ public:
 	// constrcuter destructer
 	arrow();
 	~arrow();
-	void getAngle (float* _Angle,float _Value);
+	void setAngle (float* _Angle,float _Value);
 	// delete Function
 	arrow(const arrow& _Other) = delete;
 	arrow(arrow&& _Other) noexcept = delete;

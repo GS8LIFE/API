@@ -22,19 +22,19 @@ void Bobble::BeginPlay()
 	Renderer->CreateAnimation("Y", "Bobble.png", 26, 26, 0.2f, true);
 	Renderer->CreateAnimation("R", "Bobble.png", 50, 50, 0.2f, true);
 	Renderer->CreateAnimation("G", "Bobble.png", 74, 74, 0.2f, true);
-	Renderer->CreateAnimation("P", "Bobble.png", 101, 101, 0.2f, true);
-	Renderer->CreateAnimation("O", "Bobble.png", 126, 126, 0.2f, true);
-	Renderer->CreateAnimation("B", "Bobble.png", 151, 151, 0.2f, true);
-	Renderer->CreateAnimation("W", "Bobble.png", 176, 176, 0.2f, true);
+	Renderer->CreateAnimation("P", "Bobble.png", 99, 99, 0.2f, true);
+	Renderer->CreateAnimation("O", "Bobble.png", 124, 124, 0.2f, true);
+	Renderer->CreateAnimation("B", "Bobble.png", 149, 149, 0.2f, true);
+	Renderer->CreateAnimation("W", "Bobble.png", 174, 174, 0.2f, true);
 
 	Renderer->CreateAnimation("Smove", "Bobble.png", 1, 3, 0.2f, true);
 	Renderer->CreateAnimation("Ymove", "Bobble.png", 26, 28, 0.2f, true);
-	Renderer->CreateAnimation("Rmove", "Bobble.png", 50, 52, 0.2f, true);
-	Renderer->CreateAnimation("Gmove", "Bobble.png", 74, 77, 0.2f, true);
-	Renderer->CreateAnimation("Pmove", "Bobble.png", 98, 101, 0.2f, true);
-	Renderer->CreateAnimation("Omove", "Bobble.png", 126, 128, 0.2f, true);
-	Renderer->CreateAnimation("Bmove", "Bobble.png", 151, 153, 0.2f, true);
-	Renderer->CreateAnimation("Wmove", "Bobble.png", 176, 178, 0.2f, true);
+	Renderer->CreateAnimation("Rmove", "Bobble.png", 50, 51, 0.2f, true);
+	Renderer->CreateAnimation("Gmove", "Bobble.png", 74, 76, 0.2f, true);
+	Renderer->CreateAnimation("Pmove", "Bobble.png", 99, 101, 0.2f, true);
+	Renderer->CreateAnimation("Omove", "Bobble.png", 124, 126, 0.2f, true);
+	Renderer->CreateAnimation("Bmove", "Bobble.png", 149, 151, 0.2f, true);
+	Renderer->CreateAnimation("Wmove", "Bobble.png", 174, 176, 0.2f, true);
 
 	StateChange(NowState::Idle);
 }

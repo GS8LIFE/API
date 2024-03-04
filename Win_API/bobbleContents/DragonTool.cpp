@@ -73,9 +73,7 @@ void DragonTool::StateUpdate(float _DeltaTime)
 }
 void DragonTool::Attack(float _DeltaTime)
 {
-	if (
-		true == Renderer->IsCurAnimationEnd()
-		)
+	if (true == Renderer->IsCurAnimationEnd())
 	{
 		StateChange(NowState::Idle);
 		return;
@@ -83,9 +81,7 @@ void DragonTool::Attack(float _DeltaTime)
 }
 void DragonTool::Idle(float _DeltaTime)
 {
-	if (
-		true == UEngineInput::IsPress(VK_SPACE)
-		)
+	if (true == UEngineInput::IsPress(VK_SPACE))
 	{
 		StateChange(NowState::Attack);
 		return;

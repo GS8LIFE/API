@@ -1,8 +1,10 @@
 #pragma once
 #include <EngineCore\Level.h>
-
+#include <EngineCore/Actor.h>
+#include "Enum.h"
+#include <EnginePlatform/EngineInput.h>
 // Ό³Έν :
-class PlayLevel : public ULevel
+class PlayLevel : public ULevel , public AActor , public Enum
 {
 public:
 	// constrcuter destructer
@@ -10,8 +12,6 @@ public:
 	~PlayLevel();
 	void fire_bobble();
 	void fired_bobble();
-	void AddMoveVector(const FVector& _DirDelta);
-	FVector MoveVector = FVector::Zero;
 	// delete Function
 	PlayLevel(const PlayLevel& _Other) = delete;
 	PlayLevel(PlayLevel&& _Other) noexcept = delete;

@@ -17,6 +17,7 @@ enum class NowState
 	wait,
 	Move,
 	LMove,
+	fire
 };
 enum RenderOrder
 {

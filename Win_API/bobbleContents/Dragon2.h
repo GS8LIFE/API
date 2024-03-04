@@ -43,5 +43,6 @@ private:
 	float AlphaTime = 0.0f;
 	bool Dir = false;
 
+	FVector MoveVector;
 };
 

@@ -11,6 +11,10 @@ Bobble::~Bobble()
 {
 
 }
+void Bobble::AddMoveVector(const FVector& _DirDelta)
+{
+	MoveVector += _DirDelta * MoveAcc;
+}
 void Bobble::BeginPlay()
 {
 	AActor::BeginPlay();
@@ -35,7 +39,6 @@ void Bobble::BeginPlay()
 	Renderer->CreateAnimation("Omove", "Bobble.png", 124, 126, 0.2f, true);
 	Renderer->CreateAnimation("Bmove", "Bobble.png", 149, 151, 0.2f, true);
 	Renderer->CreateAnimation("Wmove", "Bobble.png", 174, 176, 0.2f, true);
-	Renderer->SetAngle(Angle);
 	StateChange(NowState::Idle);
 }
 void Bobble::get_bubble(char _color)
@@ -199,5 +202,8 @@ void Bobble::Tick(float _DeltaTime)
 {
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);
-
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		AddMoveVector(FVector::Right * _DeltaTime);
+	}
 }

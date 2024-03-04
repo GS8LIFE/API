@@ -38,6 +38,9 @@ protected:
 	std::string CurAnimationName = "Idle";
 
 private:
+	void AddMoveVector(const FVector& _DirDelta);
+	FVector MoveVector = FVector::Zero;
+	FVector MoveAcc = FVector::Right * 500.0f;
 	float CoolTime = 0.0f;
 	int WaitTime = 0;
 	UImageRenderer* Renderer = nullptr;

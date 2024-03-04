@@ -7,10 +7,11 @@
 #include "shooter.h"
 #include "arrow.h"
 #include "Bobble.h"
+#include "Bobblefire.h"
 #include <EngineCore\EngineCore.h>
-#include "Enum.h"
 PlayLevel::PlayLevel() 
 {
+
 }
 
 PlayLevel::~PlayLevel() 
@@ -49,7 +50,7 @@ void PlayLevel::BeginPlay()
 	Dragon2* Player2 = SpawnActor<Dragon2>();
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
-
+	Bobblefire* FireBobble = SpawnActor<Bobblefire>();
 
 	//버블 배열
 	std::map<int, std::vector<char>> map;
@@ -107,9 +108,5 @@ void PlayLevel::Tick(float _DeltaTime) {
 		fire_bobble();
 	}	
 
-	if (fire == true)
-	{
-		fired_bobble();
-		fire == false;
-	}
+
 }

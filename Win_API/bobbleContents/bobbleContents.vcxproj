@@ -171,6 +171,7 @@
     <ClInclude Include="bobbleCore.h" />
     <ClInclude Include="Bobblefire.h" />
     <ClInclude Include="Ceil.h" />
+    <ClInclude Include="DegreeShare.h" />
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="Dragon2.h" />
     <ClInclude Include="Dragon2Tool.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="bobbleCore.cpp" />
     <ClCompile Include="Bobblefire.cpp" />
     <ClCompile Include="Ceil.cpp" />
+    <ClCompile Include="DegreeShare.cpp" />
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="Dragon2.cpp" />
     <ClCompile Include="Dragon2Tool.cpp" />

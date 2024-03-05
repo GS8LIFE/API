@@ -18,7 +18,6 @@ void Bobble::AddMoveVector(const FVector& _DirDelta)
 void Bobble::BeginPlay()
 {
 	AActor::BeginPlay();
-
 	Renderer = CreateImageRenderer(RenderOrder::bobble);
 	Renderer->SetImage("Bobble.png");
 	Renderer->SetTransform({ {0,0}, {72, 72} });

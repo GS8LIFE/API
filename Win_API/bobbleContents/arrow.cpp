@@ -2,6 +2,8 @@
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
 #include "Enum.h"
+
+
 arrow::arrow()
 {
 }
@@ -112,10 +114,6 @@ void arrow::Idle(float _DeltaTime)
 	}
 }
 
-float arrow::getfireAngle() 
-{
-	return fireAngle;
-}
 
 void arrow::setAngle(float* _Angle, float _Value)
 {
@@ -124,7 +122,6 @@ void arrow::setAngle(float* _Angle, float _Value)
 void arrow::Tick(float _DeltaTime) 
 {
 	AActor::Tick(_DeltaTime);
-	fireAngle = Angle;
 	//float4 Dir = float4::DegToDir(Angle);
 
 	DirRenderer->SetAngle(Angle);
@@ -132,18 +129,26 @@ void arrow::Tick(float _DeltaTime)
 	{
 			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)	
 			{
-				setAngle(&Angle, -_DeltaTime * 80.0f);
+ 				setAngle(AnglePtr, -_DeltaTime * 80.0f);
 			}
 	}
 		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
 		{
-			setAngle(&Angle, -_DeltaTime * 80.0f);
+			setAngle(AnglePtr, -_DeltaTime * 80.0f);
 		}
 		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 80)
 		{
-			setAngle(&Angle, _DeltaTime * 80.0f);
+			setAngle(AnglePtr, _DeltaTime * 80.0f);
 		}
-	
+
+		if (Angle < -80)
+		{
+			Angle = -80;
+		}
+		if (Angle > 80)
+		{
+			Angle = 80;
+		}
 
 
 

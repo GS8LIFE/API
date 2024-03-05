@@ -14,7 +14,6 @@ public:
 	arrow(arrow&& _Other) noexcept = delete;
 	arrow& operator=(const arrow& _Other) = delete;
 	arrow& operator=(arrow&& _Other) noexcept = delete;
-	float getfireAngle();
 
 protected:
 	void BeginPlay() override;
@@ -44,8 +43,7 @@ private:
 	int AnimationFrame = 0;
 	char cur_bubble = '.';
 	bool fire = false;
-	float fireAngle = 0.0f;
-	float AlphaTime = 0.0f;
+	float AlphaTime = 0.0f;	
 	bool Dir = false;
 
 };

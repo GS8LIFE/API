@@ -3,7 +3,6 @@
 #include "EnginePlatform/EngineInput.h"
 #include <EngineBase\EngineDebug.h>
 #include "Enum.h"
-#include "arrow.h"
 
 Bobblefire::Bobblefire()
 {
@@ -11,8 +10,9 @@ Bobblefire::Bobblefire()
 }
 Bobblefire::~Bobblefire()
 {
-
+	
 }
+
 void Bobblefire::AddMoveVector(const FVector& _DirDelta)
 {
 	MoveVector += _DirDelta * MoveAcc;
@@ -36,6 +36,7 @@ void Bobblefire::BeginPlay()
 }
 void Bobblefire::get_bubble(char _color)
 {
+	
 	color = _color;
 	switch (color)
 	{
@@ -100,11 +101,15 @@ void Bobblefire::IdleStart()
 	default:
 		break;
 	}
+	
 }
-
+void Bobblefire::setAngle(float* _Angle, float _Value)
+{
+	_Value = *_Angle;
+}
 void Bobblefire::fireStart()
 {
-	FireAng = 270;
+	FireAng = 80;
 }
 
 void Bobblefire::StateChange(NowState _State)
@@ -142,15 +147,41 @@ void Bobblefire::StateUpdate(float _DeltaTime)
 }
 void Bobblefire::fire(float _DeltaTime)
 {
-
-
 	FVector MovePos = FVector::Zero;
-	MovePos.X += 2 * cos(FireAng * PI / 180);
-	MovePos.Y += 2 * sin(FireAng * PI / 180);
-
-
+	if (now.X > 104 || now.X < -120) // -120 좌측 104 우측
+	{
+ 		if (FireAng > 0) // 180도
+		{
+			FireAng = 180 - FireAng;
+		}
+		else
+		{
+			UEngineDebug::OutPutDebugText("튕기는 각도가 음수로 떨어졌습니다.");
+		}
+	}
+	if (now.Y < -345) //천장까지 거리
+	{
+		now.Y = 0;
+		Renderer->Destroy();
+	}
+	if (FireAng < 0)
+	{
+		MovePos.X += 1 * cos(FireAng * DToR) * -1;
+		MovePos.Y += 1 * sin(FireAng * DToR);
+		now.X -= MovePos.X;
+		now.Y += MovePos.Y;
+	}
+	else
+	{
+		MovePos.X += 1 * cos(FireAng * DToR);
+		MovePos.Y += 1 * sin(FireAng * DToR) * -1;
+		now.X += MovePos.X;
+		now.Y += MovePos.Y;
+	}
 	AddActorLocation(MovePos);
 }
+
+
 
 void Bobblefire::Idle(float _DeltaTime)
 {
@@ -164,11 +195,11 @@ void Bobblefire::Idle(float _DeltaTime)
 void Bobblefire::Tick(float _DeltaTime)
 {
 
+	if (true == UEngineInput::IsDown('Q'))
+	{
+		FireAng = FireAng;
+	}
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);
-	if (UEngineInput::IsPress(VK_SPACE))
-	{
-		fire(_DeltaTime);
-	}
 
 }

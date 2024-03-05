@@ -38,6 +38,7 @@
     <ClInclude Include="Bobblefire.h">
       <Filter>Play\Bobble</Filter>
     </ClInclude>
+    <ClInclude Include="DegreeShare.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="Bobblefire.cpp">
       <Filter>Play\Bobble</Filter>
     </ClCompile>
+    <ClCompile Include="DegreeShare.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">

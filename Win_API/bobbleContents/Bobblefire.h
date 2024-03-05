@@ -4,9 +4,10 @@
 #include <EngineBase/EngineRandom.h>
 #include <EngineBase/EngineMath.h>
 #include <cmath>
+#include "arrow.h"
 
 // 설명 :
-class Bobblefire : public AActor, public UEngineRandom, public Enum , public UEngineMath
+class Bobblefire :public UEngineRandom, public arrow , public UEngineMath
 {
 public:
 	// constrcuter destructer
@@ -22,7 +23,7 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
+	void setAngle(float* _Angle, float _Value);
 
 	// 상태 주요 업데이트
 	void StateChange(NowState _State);
@@ -41,6 +42,7 @@ protected:
 
 private:
 	void AddMoveVector(const FVector& _DirDelta);
+	FVector now = FVector::Zero;
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
 	float CoolTime = 0.0f;

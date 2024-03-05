@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Win_API/EnginePlatform/ThirdParty/FMOD/Debug/fmodL.dll
+/Win_API/EnginePlatform/ThirdParty/FMOD/Debug/fmodL_vc.lib
+/Win_API/EnginePlatform/ThirdParty/FMOD/Release/fmod.dll
+/Win_API/EnginePlatform/ThirdParty/FMOD/Release/fmod_vc.lib

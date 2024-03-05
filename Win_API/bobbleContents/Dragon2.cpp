@@ -138,19 +138,6 @@ void Dragon2::RMove(float _DeltaTime)
 		return;
 	}
 
-	FVector MovePos = FVector::Zero;
-	if (UEngineInput::IsPress(VK_LEFT))
-	{
-		MovePos += FVector::Left * _DeltaTime * 500;
-	}
-
-	if (UEngineInput::IsPress(VK_RIGHT))
-	{
-		MovePos += FVector::Right * _DeltaTime * 1000;
-	}
-
-
-	AddActorLocation(MovePos);
 }
 void Dragon2::Tick(float _DeltaTime)
 {

@@ -50,7 +50,6 @@ void PlayLevel::BeginPlay()
 	Dragon2* Player2 = SpawnActor<Dragon2>();
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
-	Bobblefire* FireBobble = SpawnActor<Bobblefire>();
 
 	//버블 배열
 	std::map<int, std::vector<char>> map;
@@ -91,7 +90,7 @@ void PlayLevel::BeginPlay()
 
 void PlayLevel::fire_bobble()
 {
-	Bobble* firebobble = SpawnActor<Bobble>();
+	Bobblefire* firebobble = SpawnActor<Bobblefire>();
 	firebobble->SetActorLocation({ 328,410 });
 	cur_bobble = true;
 }
@@ -101,6 +100,7 @@ void PlayLevel::fired_bobble()
 	
 }
 void PlayLevel::Tick(float _DeltaTime) {
+
 	ULevel::Tick(_DeltaTime);
 
 	if (cur_bobble == false)

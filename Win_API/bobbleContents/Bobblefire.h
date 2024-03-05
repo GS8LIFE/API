@@ -51,7 +51,7 @@ private:
 	char color = '.';
 	float AlphaTime = 0.0f;
 	bool Dir = false;
-	float fireAngle = 0.0f;
+	float FireAng = 0.0f;
 
 
 };

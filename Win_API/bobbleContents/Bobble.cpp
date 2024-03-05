@@ -205,5 +205,6 @@ void Bobble::Tick(float _DeltaTime)
 	if (UEngineInput::IsPress(VK_RIGHT))
 	{
 		AddMoveVector(FVector::Right * _DeltaTime);
-	}
+	}	
+
 }

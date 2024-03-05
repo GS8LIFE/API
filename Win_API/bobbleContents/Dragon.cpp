@@ -106,6 +106,7 @@ void Dragon::Idle(float _DeltaTime)
 }
 void Dragon::Tick(float _DeltaTime)
 {
+
 	AActor::Tick(_DeltaTime);
 
 	StateUpdate(_DeltaTime);

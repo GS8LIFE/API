@@ -171,10 +171,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="EngineDebug.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="EngineDebug.h" />
     <ClInclude Include="EngineDirectory.h">
       <SubType>
       </SubType>
@@ -218,10 +215,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EngineDebug.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="EngineDebug.cpp" />
     <ClCompile Include="EngineDirectory.cpp">
       <SubType>
       </SubType>

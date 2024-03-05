@@ -112,7 +112,10 @@ void arrow::Idle(float _DeltaTime)
 	}
 }
 
-
+float arrow::getfireAngle() 
+{
+	return fireAngle;
+}
 
 void arrow::setAngle(float* _Angle, float _Value)
 {
@@ -121,7 +124,7 @@ void arrow::setAngle(float* _Angle, float _Value)
 void arrow::Tick(float _DeltaTime) 
 {
 	AActor::Tick(_DeltaTime);
-
+	fireAngle = Angle;
 	//float4 Dir = float4::DegToDir(Angle);
 
 	DirRenderer->SetAngle(Angle);

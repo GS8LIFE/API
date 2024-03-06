@@ -95,10 +95,24 @@ void PlayLevel::BeginPlay()
 	fire_bobble();
 }
 
+void PlayLevel::set_map_vector()
+{
+	x = (collideLocate.X - 205) / 16;
+	y = (collideLocate.Y - 65) / 16;
+	if (x > 0)
+	{
+		x = (collideLocate.X - 221) / 32 + 1;
+	}
+	if (y > 0)
+	{
+		y = (collideLocate.Y - 81) / 32 + 1;
+	}
+}
+
 void PlayLevel::fire_bobble()
 {
 	firebobble = SpawnActor<Bobblefire>();
-	char now = firebobble->get_bubble(map);
+	now = firebobble->get_bubble(map);
 	firebobble->get_bubble(now);
 	firebobble->SetActorLocation({ 328,410 });
 	nextbobble = SpawnActor<Bobble>();
@@ -112,7 +126,8 @@ void PlayLevel::fired_bobble()
 {
 	nextbobble->Destroy();
 	firebobble = SpawnActor<Bobblefire>();
-	firebobble->get_bubble(next); 
+	firebobble->get_bubble(next);
+	now = next;
 	firebobble->SetActorLocation({ 328,410 });
 	nextbobble = SpawnActor<Bobble>();
 	next = firebobble->get_bubble(map);
@@ -132,9 +147,24 @@ void PlayLevel::Tick(float _DeltaTime) {
 	else if (firing == true) 
 	{
 		if (firebobble->IsDestroy())
-		{ 
-			Bobble* NewB = SpawnActor<Bobble>();
-		    		NewB->SetActorLocation(collideLocate);
+		{
+			set_map_vector();
+			if (map[x][y] = '/' && y % 2 == 1)
+			{
+
+			}
+			if (y % 2 == 1)
+			{
+				Bobble* NewB = SpawnActor<Bobble>();
+				NewB->get_bubble(now);
+				NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * y) });
+			}
+			else
+			{
+				Bobble* NewB = SpawnActor<Bobble>();
+				NewB->get_bubble(now);
+ 				NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * y) });
+			}
 			firing = false;
 		}
 		else if (firebobble->IsDestroy() == false)
@@ -146,4 +176,6 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		fired_bobble();
 	}	
+
+
 }

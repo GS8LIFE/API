@@ -33,7 +33,7 @@ void Bobblefire::BeginPlay()
 	
 	//발사 버블 충돌 체크
 	BodyCollision = CreateCollision(ColliderOrder::firebobble);
-	BodyCollision->SetScale({ 36, 36 });
+	BodyCollision->SetScale({ 32, 32 });
 	BodyCollision->SetColType(ECollisionType::CirCle);
 	
 	StateChange(NowState::Idle);

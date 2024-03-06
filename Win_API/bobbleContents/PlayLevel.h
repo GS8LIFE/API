@@ -25,6 +25,7 @@ public:
 		collideLocate = _collideLocate;
 	}
 
+	void set_map_vector();
 
 
 protected:
@@ -34,7 +35,10 @@ protected:
 	bool fire = false;
 	char next = '.';
 private:
+	int x = 0;
+	int y = 0;
 	bool firing = false;
+	char now;
 	std::map<int, std::vector<char>> map;
 	arrow* Arrow = nullptr;
 	Bobblefire* firebobble = nullptr;

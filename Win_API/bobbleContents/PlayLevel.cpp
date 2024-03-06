@@ -24,7 +24,6 @@ void PlayLevel::BeginPlay()
 
 
 	FVector WindowScale = GEngine->MainWindow.GetWindowScale();
-
 	AActor* Back = SpawnActor<AActor>();
 	UImageRenderer* Renderer = Back->CreateImageRenderer(RenderOrder::Map);
 	Renderer->SetImage("map.png");
@@ -56,8 +55,8 @@ void PlayLevel::BeginPlay()
 	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
 	map[2] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', 'Y' };
 	map[3] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', '/' };
-	map[4] = { '.', '.', '.', '.', '.', '.', '.', '.'};
-	map[5] = { '.', '.', '.', '.', '.', '.', '.', '/' };
+	map[4] = { '.', '.', '.', 'R', '.', '.', '.', '.'};
+	map[5] = { '.', '.', '.', 'R', '.', '.', '.', '/' };
 	map[6] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[7] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 	map[8] = { '.', '.', '.', '.', '.', '.', '.', '.' };
@@ -113,7 +112,7 @@ void PlayLevel::fired_bobble()
 {
 	nextbobble->Destroy();
 	firebobble = SpawnActor<Bobblefire>();
-	firebobble->get_bubble(next);
+	firebobble->get_bubble(next); 
 	firebobble->SetActorLocation({ 328,410 });
 	nextbobble = SpawnActor<Bobble>();
 	next = firebobble->get_bubble(map);
@@ -128,11 +127,23 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		firebobble->setfireAng(Arrow->getangle());
 		cur_bobble = false;
+		firing = true;
 	}
-	else if(cur_bobble == false)
+	else if (firing == true) 
+	{
+		if (firebobble->IsDestroy())
+		{ 
+			Bobble* NewB = SpawnActor<Bobble>();
+		    		NewB->SetActorLocation(collideLocate);
+			firing = false;
+		}
+		else if (firebobble->IsDestroy() == false)
+		{
+			set_collide_locate(firebobble->get_collide_locate());
+		}
+	}
+	else if(cur_bobble == false )
 	{
 		fired_bobble();
 	}	
-
-
 }

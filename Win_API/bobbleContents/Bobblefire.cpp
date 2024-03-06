@@ -3,7 +3,6 @@
 #include "EnginePlatform/EngineInput.h"
 #include <EngineBase\EngineDebug.h>
 #include "Enums.h"
-
 Bobblefire::Bobblefire()
 {
 
@@ -34,7 +33,7 @@ void Bobblefire::BeginPlay()
 	
 	//발사 버블 충돌 체크
 	BodyCollision = CreateCollision(ColliderOrder::firebobble);
-	BodyCollision->SetScale({ 32, 32 });
+	BodyCollision->SetScale({ 36, 36 });
 	BodyCollision->SetColType(ECollisionType::CirCle);
 	
 	StateChange(NowState::Idle);
@@ -131,6 +130,10 @@ void Bobblefire::setAngle(float* _Ptr, float _ang)
 {
 	*_Ptr = 90-_ang;
 }
+void Bobblefire::setlocate(FVector* _Ptr, FVector _locate)
+{
+	*_Ptr = _locate;
+}
 void Bobblefire::fireStart()
 {
 	setAngle(FireAngPtr, FireAng);
@@ -204,8 +207,6 @@ void Bobblefire::fire()
 		AddActorLocation(MovePos);
 }
 
-
-
 void Bobblefire::Idle(float _DeltaTime)
 {
 	CoolTime += _DeltaTime; 
@@ -225,6 +226,7 @@ void Bobblefire::Tick(float _DeltaTime)
 	std::vector<UCollision*> Result;
 	if (true == BodyCollision->CollisionCheck(ColliderOrder::bobble, Result))
 	{
+		count += 1;
 		// 이런식으로 상대를 사용할수 있다.
 		UCollision* Collision = Result[0];
 		AActor* Ptr = Collision->GetOwner();
@@ -235,9 +237,18 @@ void Bobblefire::Tick(float _DeltaTime)
 			MsgBoxAssert("터져야겠지....");
 		}
 		locate = GetActorLocation();
-		Destroy();
+		if (count == 1)
+		{
+			setlocate(locatePtr, locate);
+		}
+		if (count == 2)
+		{
+			Destroy();
+		}
+		
 	}
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);
 
+	int a = 0;
 }

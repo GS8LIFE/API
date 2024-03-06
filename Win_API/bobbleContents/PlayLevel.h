@@ -20,6 +20,12 @@ public:
 	PlayLevel(PlayLevel&& _Other) noexcept = delete;
 	PlayLevel& operator=(const PlayLevel& _Other) = delete;
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
+	void set_collide_locate(FVector _collideLocate)
+	{
+		collideLocate = _collideLocate;
+	}
+
+
 
 protected:
 	void BeginPlay() override;
@@ -28,9 +34,11 @@ protected:
 	bool fire = false;
 	char next = '.';
 private:
+	bool firing = false;
 	std::map<int, std::vector<char>> map;
 	arrow* Arrow = nullptr;
 	Bobblefire* firebobble = nullptr;
 	Bobble* nextbobble = nullptr;
+	FVector collideLocate = FVector::Zero - FVector{ 0.0f, 0.0f, 0.0f, 0.0f };
 };
 

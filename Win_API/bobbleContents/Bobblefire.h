@@ -6,9 +6,8 @@
 #include <cmath>
 #include "arrow.h"
 #include "Bobble.h"
-
 // Ό³Έν :
-class Bobblefire :public UEngineRandom, public arrow , public UEngineMath
+class Bobblefire :public UEngineRandom, public arrow , public UEngineMath 
 {
 public:
 	// constrcuter destructer
@@ -21,14 +20,19 @@ public:
 	Bobblefire& operator=(const Bobblefire& _Other) = delete;
 	Bobblefire& operator=(Bobblefire&& _Other) noexcept = delete;
 	void get_bubble(char _color);
+	FVector get_collide_locate()
+	{
+		return locate;
+	}
 	void setfireAng(float _Angle)
 	{
 		FireAng = _Angle;
 	}
 	void setAngle(float* _Angle, float _Value);
+	void setlocate(FVector* _Angle, FVector _Value);
+
 	char get_bubble(std::map<int, std::vector<char>> _map);
 protected:
-	FVector locate = float4::Zero;
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -55,7 +59,10 @@ private:
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
 	UCollision* BodyCollision;
+	FVector locate = float4::Zero;
+	FVector* locatePtr = &locate;
 	UImageRenderer* Renderer = nullptr;
+	int count = 0;
 	int WaitTime = 0;
 	float CoolTime = 0.0f;
 	float AnimationTime = 0.0f;

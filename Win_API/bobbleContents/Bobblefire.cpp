@@ -31,7 +31,7 @@ void Bobblefire::BeginPlay()
 	Renderer->CreateAnimation("O", "Bobble.png", 123, 123, 0.2f, true);
 	Renderer->CreateAnimation("B", "Bobble.png", 148, 148, 0.2f, true);
 	Renderer->CreateAnimation("W", "Bobble.png", 173, 173, 0.2f, true);
-
+	
 	//발사 버블 충돌 체크
 	BodyCollision = CreateCollision(ColliderOrder::firebobble);
 	BodyCollision->SetScale({ 32, 32 });
@@ -234,7 +234,7 @@ void Bobblefire::Tick(float _DeltaTime)
 		{
 			MsgBoxAssert("터져야겠지....");
 		}
-
+		locate = GetActorLocation();
 		Destroy();
 	}
 	AActor::Tick(_DeltaTime);

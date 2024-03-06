@@ -28,6 +28,7 @@ public:
 	void setAngle(float* _Angle, float _Value);
 	char get_bubble(std::map<int, std::vector<char>> _map);
 protected:
+	FVector locate = float4::Zero;
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 

@@ -148,13 +148,13 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		if (firebobble->IsDestroy())
 		{
-			set_map_vector();
-			if (/*map[x][y] = '/' && y % 2 == 1  */false )
+ 			set_map_vector();
+			if (map[y][x] = '/' && y % 2 == 1   )
 			{
 
-			/*	Bobble* NewB = SpawnActor<Bobble>();
+				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(now);
-				NewB->SetActorLocation({ 221 + (32 * x-1), 65 + (32 * y) }); */
+				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
 			}
 			else {
 				if (y % 2 == 1)

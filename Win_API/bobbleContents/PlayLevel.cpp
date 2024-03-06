@@ -57,7 +57,7 @@ void PlayLevel::BeginPlay()
 	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
 	map[2] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', 'Y' };
 	map[3] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', '/' };
-	map[1, 2];
+	char a = map[1, 2];
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{
 		const auto& row = map[row_idx];

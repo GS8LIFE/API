@@ -1,10 +1,10 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EngineBase/EngineRandom.h>
 
 // Ό³Έν :
-class Bobble : public AActor, public UEngineRandom, public Enum
+class Bobble : public AActor, public UEngineRandom, public Enums
 {
 public:
 	// constrcuter destructer
@@ -38,13 +38,14 @@ protected:
 	std::string CurAnimationName = "Idle";
 
 private:
-	void AddMoveVector(const FVector& _DirDelta);
+	UCollision* BodyCollision;
+	UImageRenderer* Renderer = nullptr;
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
 	float CoolTime = 0.0f;
 	int WaitTime = 0;
-	UImageRenderer* Renderer = nullptr;
 	float AnimationTime = 0.0f;
+	void AddMoveVector(const FVector& _DirDelta);
 	int AnimationFrame = 0;
 	char color = '.';
 	float AlphaTime = 0.0f;

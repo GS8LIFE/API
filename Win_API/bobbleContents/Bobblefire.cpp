@@ -2,7 +2,7 @@
 #include <vector>
 #include "EnginePlatform/EngineInput.h"
 #include <EngineBase\EngineDebug.h>
-#include "Enum.h"
+#include "Enums.h"
 
 Bobblefire::Bobblefire()
 {
@@ -25,15 +25,39 @@ void Bobblefire::BeginPlay()
 	Renderer->SetScale({ 72,72 });
 	Renderer->CreateAnimation("S", "Bobble.png", 0, 0, 0.1f, true);
 	Renderer->CreateAnimation("Y", "Bobble.png", 25, 25, 0.2f, true);
-	Renderer->CreateAnimation("R", "Bobble.png", 49, 49, 0.2f, true);
+	Renderer->CreateAnimation("R", "Bobble.png", 50, 50, 0.2f, true);
 	Renderer->CreateAnimation("G", "Bobble.png", 73, 73, 0.2f, true);
 	Renderer->CreateAnimation("P", "Bobble.png", 98, 98, 0.2f, true);
 	Renderer->CreateAnimation("O", "Bobble.png", 123, 123, 0.2f, true);
 	Renderer->CreateAnimation("B", "Bobble.png", 148, 148, 0.2f, true);
 	Renderer->CreateAnimation("W", "Bobble.png", 173, 173, 0.2f, true);
-
+	
+	//발사 버블 충돌 체크
+	BodyCollision = CreateCollision(ColliderOrder::firebobble);
+	BodyCollision->SetScale({ 32, 32 });
+	BodyCollision->SetColType(ECollisionType::CirCle);
+	
 	StateChange(NowState::Idle);
 }
+
+char Bobblefire::get_bubble(std::map<int, std::vector<char>> _map)
+{
+	std::vector<char> colors;
+	for (int i = 0; i < 11; i++)
+	{
+		for (int j = 0; j < 7; j++)
+		{
+			char bobbleColor = _map[i][j];
+			if (bobbleColor != '.' && bobbleColor != '/')
+			{
+				colors.push_back(bobbleColor);
+			}
+		}
+	}
+	int choice = RandomInt(0, colors.size()-1);
+  	return colors[choice];
+}
+
 void Bobblefire::get_bubble(char _color)
 {
 	
@@ -103,13 +127,13 @@ void Bobblefire::IdleStart()
 	}
 	
 }
-void Bobblefire::setAngle(float* _Angle, float _Value)
+void Bobblefire::setAngle(float* _Ptr, float _ang)
 {
-	_Value = *_Angle;
+	*_Ptr = 90-_ang;
 }
 void Bobblefire::fireStart()
 {
-	FireAng = 80;
+	setAngle(FireAngPtr, FireAng);
 }
 
 void Bobblefire::StateChange(NowState _State)
@@ -139,53 +163,52 @@ void Bobblefire::StateUpdate(float _DeltaTime)
 		Idle(_DeltaTime);
 		break;
 	case NowState::fire:
-		fire(_DeltaTime);
+		fire();
 		break;
 	default:
 		break;
 	}
 }
-void Bobblefire::fire(float _DeltaTime)
+void Bobblefire::fire()
 {
-	FVector MovePos = FVector::Zero;
-	if (now.X > 104 || now.X < -120) // -120 좌측 104 우측
-	{
- 		if (FireAng > 0) // 180도
+		FVector MovePos = FVector::Zero;
+		if (now.X > 104 || now.X < -120) // -120 좌측 104 우측
 		{
-			FireAng = 180 - FireAng;
+			if (FireAng > 0) // 180도
+			{
+				FireAng = 180 - FireAng;
+			}
+			else
+			{
+				UEngineDebug::OutPutDebugText("튕기는 각도가 음수로 떨어졌습니다.");
+			}
+		}
+		if (now.Y < -345) //천장까지 거리
+		{
+			now.Y = 0;
+		}
+		if (FireAng < 0)
+		{
+			MovePos.X += speed * cos(FireAng * DToR) * -1;
+			MovePos.Y += speed * sin(FireAng * DToR);
+			now.X -= MovePos.X;
+			now.Y += MovePos.Y;
 		}
 		else
 		{
-			UEngineDebug::OutPutDebugText("튕기는 각도가 음수로 떨어졌습니다.");
+			MovePos.X += speed * cos(FireAng * DToR);
+			MovePos.Y += speed * sin(FireAng * DToR) * -1;
+			now.X += MovePos.X;
+			now.Y += MovePos.Y;
 		}
-	}
-	if (now.Y < -345) //천장까지 거리
-	{
-		now.Y = 0;
-		Renderer->Destroy();
-	}
-	if (FireAng < 0)
-	{
-		MovePos.X += 1 * cos(FireAng * DToR) * -1;
-		MovePos.Y += 1 * sin(FireAng * DToR);
-		now.X -= MovePos.X;
-		now.Y += MovePos.Y;
-	}
-	else
-	{
-		MovePos.X += 1 * cos(FireAng * DToR);
-		MovePos.Y += 1 * sin(FireAng * DToR) * -1;
-		now.X += MovePos.X;
-		now.Y += MovePos.Y;
-	}
-	AddActorLocation(MovePos);
+		AddActorLocation(MovePos);
 }
 
 
 
 void Bobblefire::Idle(float _DeltaTime)
 {
-	CoolTime += _DeltaTime;
+	CoolTime += _DeltaTime; 
 	if (UEngineInput::IsDown(VK_SPACE))
 	{
 		StateChange(NowState::fire);
@@ -198,6 +221,21 @@ void Bobblefire::Tick(float _DeltaTime)
 	if (true == UEngineInput::IsDown('Q'))
 	{
 		FireAng = FireAng;
+	}
+	std::vector<UCollision*> Result;
+	if (true == BodyCollision->CollisionCheck(ColliderOrder::bobble, Result))
+	{
+		// 이런식으로 상대를 사용할수 있다.
+		UCollision* Collision = Result[0];
+		AActor* Ptr = Collision->GetOwner();
+		Bobble* bobble = dynamic_cast<Bobble*>(Ptr);
+
+		if (nullptr == bobble)
+		{
+			MsgBoxAssert("터져야겠지....");
+		}
+		locate = GetActorLocation();
+		Destroy();
 	}
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);

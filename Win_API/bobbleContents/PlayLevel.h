@@ -1,10 +1,13 @@
 #pragma once
 #include <EngineCore\Level.h>
 #include <EngineCore/Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EnginePlatform/EngineInput.h>
+#include "Bobblefire.h"
+#include "Bobble.h"
 // Ό³Έν :
-class PlayLevel : public ULevel , public AActor , public Enum
+class arrow;
+class PlayLevel : public ULevel , public AActor , public Enums
 {
 public:
 	// constrcuter destructer
@@ -23,7 +26,11 @@ protected:
 	void Tick(float _DeltaTime) override;
 	bool cur_bobble = false;
 	bool fire = false;
+	char next = '.';
 private:
-
+	std::map<int, std::vector<char>> map;
+	arrow* Arrow = nullptr;
+	Bobblefire* firebobble = nullptr;
+	Bobble* nextbobble = nullptr;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 // Ό³Έν :
 class Dragon2Tool : public AActor
 {

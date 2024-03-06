@@ -1,7 +1,7 @@
 #include "Dragon2Tool.h"
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
-#include "Enum.h"
+#include "Enums.h"
 Dragon2Tool::Dragon2Tool()
 {
 }

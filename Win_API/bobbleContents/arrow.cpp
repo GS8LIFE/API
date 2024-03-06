@@ -1,7 +1,7 @@
 #include "arrow.h"
 #include <EnginePlatform\EngineInput.h>
 #include <EngineBase\EngineDebug.h>
-#include "Enum.h"
+#include "Enums.h"
 
 
 arrow::arrow()
@@ -114,31 +114,31 @@ void arrow::Idle(float _DeltaTime)
 	}
 }
 
-
 void arrow::setAngle(float* _Angle, float _Value)
 {
 	*_Angle += _Value;
 }
+
 void arrow::Tick(float _DeltaTime) 
 {
 	AActor::Tick(_DeltaTime);
 	//float4 Dir = float4::DegToDir(Angle);
-
+	
 	DirRenderer->SetAngle(Angle);
 	if (true == UEngineInput::IsPress(VK_LEFT) && true == UEngineInput::IsPress(VK_RIGHT))
 	{
 			if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)	
 			{
- 				setAngle(AnglePtr, -_DeltaTime * 80.0f);
+				setAngle(&Angle, -_DeltaTime * 80.0f);
 			}
 	}
 		if (true == UEngineInput::IsPress(VK_LEFT) && Angle >= -80)
 		{
-			setAngle(AnglePtr, -_DeltaTime * 80.0f);
+			setAngle(&Angle, -_DeltaTime * 80.0f);
 		}
 		if (true == UEngineInput::IsPress(VK_RIGHT) && Angle <= 80)
 		{
-			setAngle(AnglePtr, _DeltaTime * 80.0f);
+			setAngle(&Angle, _DeltaTime * 80.0f);
 		}
 
 		if (Angle < -80)

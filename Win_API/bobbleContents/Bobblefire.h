@@ -1,10 +1,11 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EngineBase/EngineRandom.h>
 #include <EngineBase/EngineMath.h>
 #include <cmath>
 #include "arrow.h"
+#include "Bobble.h"
 
 // 설명 :
 class Bobblefire :public UEngineRandom, public arrow , public UEngineMath
@@ -20,10 +21,16 @@ public:
 	Bobblefire& operator=(const Bobblefire& _Other) = delete;
 	Bobblefire& operator=(Bobblefire&& _Other) noexcept = delete;
 	void get_bubble(char _color);
+	void setfireAng(float _Angle)
+	{
+		FireAng = _Angle;
+	}
+	void setAngle(float* _Angle, float _Value);
+	char get_bubble(std::map<int, std::vector<char>> _map);
 protected:
+	FVector locate = float4::Zero;
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void setAngle(float* _Angle, float _Value);
 
 	// 상태 주요 업데이트
 	void StateChange(NowState _State);
@@ -31,30 +38,35 @@ protected:
 
 	// 상태 함수들
 	void Idle(float _DeltaTime);
-	void fire(float _DeltaTime);
+	void fire();
 
 	// 상태 시작 함수들
 	void IdleStart();
 	void fireStart();
 
+	
+
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";
 
+
 private:
-	void AddMoveVector(const FVector& _DirDelta);
 	FVector now = FVector::Zero;
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
-	float CoolTime = 0.0f;
-	int WaitTime = 0;
+	UCollision* BodyCollision;
 	UImageRenderer* Renderer = nullptr;
+	int WaitTime = 0;
+	float CoolTime = 0.0f;
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
 	char color = '.';
 	float AlphaTime = 0.0f;
 	bool Dir = false;
 	float FireAng = 0.0f;
-
+	float* FireAngPtr = &FireAng;
+	float speed = 2;
+	void AddMoveVector(const FVector& _DirDelta);
 
 };
 

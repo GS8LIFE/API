@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EngineBase/EngineRandom.h>
 #include <EngineBase/EngineMath.h>
 #include <cmath>
@@ -20,10 +20,13 @@ public:
 	Bobblefire& operator=(const Bobblefire& _Other) = delete;
 	Bobblefire& operator=(Bobblefire&& _Other) noexcept = delete;
 	void get_bubble(char _color);
+	void setfireAng(float _Angle)
+	{
+		FireAng = _Angle;
+	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-	void setAngle(float* _Angle, float _Value);
 
 	// 상태 주요 업데이트
 	void StateChange(NowState _State);
@@ -37,11 +40,13 @@ protected:
 	void IdleStart();
 	void fireStart();
 
+	
+
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";
 
+
 private:
-	void AddMoveVector(const FVector& _DirDelta);
 	FVector now = FVector::Zero;
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
@@ -55,6 +60,7 @@ private:
 	bool Dir = false;
 	float FireAng = 0.0f;
 
+	void AddMoveVector(const FVector& _DirDelta);
 
 };
 

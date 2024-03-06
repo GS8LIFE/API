@@ -2,7 +2,7 @@
 #include <vector>
 #include "EnginePlatform/EngineInput.h"
 #include <EngineBase\EngineDebug.h>
-#include "Enum.h"
+#include "Enums.h"
 
 Bobblefire::Bobblefire()
 {
@@ -103,13 +103,10 @@ void Bobblefire::IdleStart()
 	}
 	
 }
-void Bobblefire::setAngle(float* _Angle, float _Value)
-{
-	_Value = *_Angle;
-}
+
 void Bobblefire::fireStart()
 {
-	FireAng = 80;
+	FireAng = Angle;
 }
 
 void Bobblefire::StateChange(NowState _State)
@@ -162,7 +159,6 @@ void Bobblefire::fire(float _DeltaTime)
 	if (now.Y < -345) //천장까지 거리
 	{
 		now.Y = 0;
-		Renderer->Destroy();
 	}
 	if (FireAng < 0)
 	{

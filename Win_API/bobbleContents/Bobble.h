@@ -1,10 +1,10 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EngineBase/EngineRandom.h>
 
 // Ό³Έν :
-class Bobble : public AActor, public UEngineRandom, public Enum
+class Bobble : public AActor, public UEngineRandom, public Enums
 {
 public:
 	// constrcuter destructer

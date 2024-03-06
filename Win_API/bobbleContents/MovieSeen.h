@@ -1,7 +1,7 @@
 #pragma once
 #include <EngineCore/Level.h>
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 // Ό³Έν :
 class MovieSeen : public AActor
 {

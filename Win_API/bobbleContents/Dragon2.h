@@ -1,8 +1,8 @@
 #pragma once
 #include <EngineCore\Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 // Ό³Έν :
-class Dragon2 : public AActor , public Enum
+class Dragon2 : public AActor , public Enums
 {
 public:
 	// constrcuter destructer

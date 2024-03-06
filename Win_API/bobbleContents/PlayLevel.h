@@ -1,10 +1,11 @@
 #pragma once
 #include <EngineCore\Level.h>
 #include <EngineCore/Actor.h>
-#include "Enum.h"
+#include "Enums.h"
 #include <EnginePlatform/EngineInput.h>
 // Ό³Έν :
-class PlayLevel : public ULevel , public AActor , public Enum
+class arrow;
+class PlayLevel : public ULevel , public AActor , public Enums
 {
 public:
 	// constrcuter destructer
@@ -24,6 +25,7 @@ protected:
 	bool cur_bobble = false;
 	bool fire = false;
 private:
+	arrow* Arrow = nullptr;
 
 };
 

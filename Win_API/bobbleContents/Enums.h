@@ -1,10 +1,6 @@
 #pragma once
-class Enum
+class Enums
 {
-public:
-	float* AnglePtr = &Angle;
-protected:
-	float Angle = 0.0f;
 };
 
 

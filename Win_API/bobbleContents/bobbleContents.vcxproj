@@ -176,7 +176,7 @@
     <ClInclude Include="Dragon2.h" />
     <ClInclude Include="Dragon2Tool.h" />
     <ClInclude Include="DragonTool.h" />
-    <ClInclude Include="Enum.h" />
+    <ClInclude Include="Enums.h" />
     <ClInclude Include="MovieSeen.h" />
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="shooter.h" />
@@ -193,7 +193,7 @@
     <ClCompile Include="Dragon2.cpp" />
     <ClCompile Include="Dragon2Tool.cpp" />
     <ClCompile Include="DragonTool.cpp" />
-    <ClCompile Include="Enum.cpp" />
+    <ClCompile Include="Enums.cpp" />
     <ClCompile Include="MovieSeen.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
     <ClCompile Include="shooter.cpp" />

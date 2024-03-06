@@ -43,7 +43,7 @@ void PlayLevel::BeginPlay()
 	Renderer3->SetImage("bar.png");
 	Renderer3->SetTransform({ {325,400}, {272, 60} });
 
-	arrow* Arrow = SpawnActor<arrow>();
+	Arrow = SpawnActor<arrow>();
 	shooter* Shooter = SpawnActor<shooter>();
 	Ceil* ceiling = SpawnActor<Ceil>();
 	Dragon* Player = SpawnActor<Dragon>();
@@ -57,7 +57,7 @@ void PlayLevel::BeginPlay()
 	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
 	map[2] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', 'Y' };
 	map[3] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', '/' };
-	char a = map[1, 2];
+
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{
 		const auto& row = map[row_idx];
@@ -92,6 +92,7 @@ void PlayLevel::fire_bobble()
 {
 	Bobblefire* firebobble = SpawnActor<Bobblefire>();
 	firebobble->SetActorLocation({ 328,410 });
+	firebobble->setfireAng(Arrow->getangle());
 	cur_bobble = true;
 }
 

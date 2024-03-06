@@ -52,11 +52,18 @@ void PlayLevel::BeginPlay()
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
 
 	//버블 배열
-	std::map<int, std::vector<char>> map;
 	map[0] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', 'G' };
 	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
 	map[2] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', 'Y' };
 	map[3] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', '/' };
+	map[4] = { '.', '.', '.', '.', '.', '.', '.', '.'};
+	map[5] = { '.', '.', '.', '.', '.', '.', '.', '/' };
+	map[6] = { '.', '.', '.', '.', '.', '.', '.', '.' };
+	map[7] = { '.', '.', '.', '.', '.', '.', '.', '/' };
+	map[8] = { '.', '.', '.', '.', '.', '.', '.', '.' };
+	map[9] = { '.', '.', '.', '.', '.', '.', '.', '/' };
+	map[10] = { '.', '.', '.', '.', '.', '.', '.', '.' };
+	map[11] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{
@@ -86,30 +93,45 @@ void PlayLevel::BeginPlay()
 
 		}
 	}
+	fire_bobble();
 }
 
 void PlayLevel::fire_bobble()
 {
-	Bobblefire* firebobble = SpawnActor<Bobblefire>();
+	firebobble = SpawnActor<Bobblefire>();
+	char now = firebobble->get_bubble(map);
+	firebobble->get_bubble(now);
 	firebobble->SetActorLocation({ 328,410 });
-	firebobble->setfireAng(Arrow->getangle());
+	nextbobble = SpawnActor<Bobble>();
+	next = firebobble->get_bubble(map);
+	nextbobble->get_bubble(next);
+	nextbobble->SetActorLocation({ 264,448 });
 	cur_bobble = true;
 }
 
 void PlayLevel::fired_bobble()
 {
-	
+	nextbobble->Destroy();
+	firebobble = SpawnActor<Bobblefire>();
+	firebobble->get_bubble(next);
+	firebobble->SetActorLocation({ 328,410 });
+	nextbobble = SpawnActor<Bobble>();
+	next = firebobble->get_bubble(map);
+	nextbobble->get_bubble(next);
+	nextbobble->SetActorLocation({ 264,448 });
+	cur_bobble = true;
 }
 void PlayLevel::Tick(float _DeltaTime) {
 
-	ULevel::Tick(_DeltaTime);
-	if (true == UEngineInput::IsDown('E'))
+	ULevel::Tick(_DeltaTime);	
+	if (cur_bobble == true && true == UEngineInput::IsDown(VK_SPACE))
 	{
+		firebobble->setfireAng(Arrow->getangle());
 		cur_bobble = false;
 	}
-	if (cur_bobble == false)
+	else if(cur_bobble == false)
 	{
-		fire_bobble();
+		fired_bobble();
 	}	
 
 

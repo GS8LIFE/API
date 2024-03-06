@@ -1,9 +1,17 @@
 #pragma once
 class Enums
 {
+public:
+	float* AnglePtr = &Angle;
+protected:
+	float Angle = 0.0f;
 };
 
-
+enum class ColliderOrder
+{
+	bobble,
+	firebobble
+};
 
 enum class NowState
 {

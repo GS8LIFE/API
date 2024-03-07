@@ -21,6 +21,10 @@ void Ceil::BeginPlay()
 
 
 	Renderer->ChangeAnimation("idle");
+
+	BodyCollision = CreateCollision(ColliderOrder::Ceil);
+	BodyCollision->SetScale({ 640, 115 });
+	BodyCollision->SetColType(ECollisionType::Rect);
 }
 
 void Ceil::Tick(float _DeltaTime)

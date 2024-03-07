@@ -6,6 +6,7 @@
 #include <cmath>
 #include "arrow.h"
 #include "Bobble.h"
+#include "Ceil.h"
 // Ό³Έν :
 class Bobblefire :public UEngineRandom, public arrow , public UEngineMath 
 {

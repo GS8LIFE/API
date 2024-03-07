@@ -24,8 +24,11 @@ public:
 	{
 		collideLocate = _collideLocate;
 	}
-
+	void remove_bobble(int _row,int _col,char _Color);
+	void visit(int _row, int _col, char _Color);
+	void check_x(int _x);
 	void set_map_vector();
+
 
 
 protected:
@@ -39,6 +42,8 @@ private:
 	int y = 0;
 	bool firing = false;
 	char now;
+	int CellCount = 0;
+	std::vector<std::pair<int, int>> visited;
 	std::map<int, std::vector<char>> map;
 	arrow* Arrow = nullptr;
 	Bobblefire* firebobble = nullptr;

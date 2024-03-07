@@ -51,10 +51,10 @@ void PlayLevel::BeginPlay()
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
 
 	//버블 배열
-	map[0] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', 'G' };
-	map[1] = { 'R', 'R', 'Y', 'Y', 'S', 'S', 'G', '/' };
-	map[2] = { 'S', 'S', 'G', 'G', 'R', 'R', 'Y', 'Y' };
-	map[3] = { 'S', 'G', 'G', 'R', 'R', 'Y', 'Y', '/' };
+	map[0] = { '.', '.', 'Y', 'Y', 'S', 'S', 'G', 'G' };
+	map[1] = { '.', '.', 'Y', 'Y', 'S', 'S', 'G', '/' };
+	map[2] = { '.', '.', 'G', 'G', 'R', 'R', 'Y', 'Y' };
+	map[3] = { '.', '.', 'G', 'R', 'R', 'Y', 'Y', '/' };
 	map[4] = { '.', '.', '.', 'R', '.', '.', '.', '.'};
 	map[5] = { '.', '.', '.', 'R', '.', '.', '.', '/' };
 	map[6] = { '.', '.', '.', '.', '.', '.', '.', '.' };
@@ -95,6 +95,15 @@ void PlayLevel::BeginPlay()
 	fire_bobble();
 }
 
+
+void PlayLevel::check_x(int _x)
+{
+	if (_x > 0) 
+	{
+		_x = (collideLocate.X - 205) / 32 + 1;
+	}
+}
+
 void PlayLevel::set_map_vector()
 {
 	y = (collideLocate.Y - 65) / 16;
@@ -104,16 +113,16 @@ void PlayLevel::set_map_vector()
 		y = (collideLocate.Y - 81) / 32 + 1;
 		if (y % 2 == 1)
 		{
-			x = (collideLocate.X - 236) / 32 + 1;
+			check_x(x);
 		}
 		else
 		{
-			x = (collideLocate.X - 221) / 32 + 1;
+			check_x(x);
 		}
 	}
 	else
 	{
-		x = (collideLocate.X - 205) / 32 + 1;
+		check_x(x);
 	}
 }
 
@@ -130,6 +139,36 @@ void PlayLevel::fire_bobble()
 	nextbobble->SetActorLocation({ 264,448 });
 	cur_bobble = true;
 }
+
+void PlayLevel::remove_bobble(int _row, int _col, char _color)
+{
+	visited.clear();
+	visit(_row, _col, _color);
+
+}
+void PlayLevel::visit(int _row, int _col, char _color)
+{
+	if (_row < 0 or _row >= 11  or _col < 0 or _col >= 8)
+	{
+		return;
+	}
+	else if (_color != map[_row][_col])
+	{
+		return;
+	}
+	else if (true)
+	{
+		return;
+	}
+	if (std::find(visited.begin(), visited.end(), std::make_pair(_row, _col)) != visited.end()) {
+		return; // 이미 방문한 곳이면 함수를 빠져나감
+	}
+
+	// 방문 처리: (row_idx, col_idx)  visited 벡터에 추가
+	visited.push_back(std::make_pair(_row, _col));
+
+}
+
 
 void PlayLevel::fired_bobble()
 {
@@ -164,6 +203,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(now);
 				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
+				map[y][x] = now;
 			}
 			else {
 				if (y % 2 == 1)
@@ -171,14 +211,17 @@ void PlayLevel::Tick(float _DeltaTime) {
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
 					NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * y) });
+					map[y][x] = now;
 				}
 				else
 				{
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
 					NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * y) });
+					map[y][x] = now;
 				}
 			}
+			CellCount++;
 			firing = false;
 		}
 		else if (firebobble->IsDestroy() == false)

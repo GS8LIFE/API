@@ -24,6 +24,7 @@ protected:
 
 private:
 	UImageRenderer* Renderer = nullptr;
+	UCollision* BodyCollision;
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
 

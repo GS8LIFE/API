@@ -218,7 +218,6 @@ void Bobblefire::Idle(float _DeltaTime)
 }
 void Bobblefire::Tick(float _DeltaTime)
 {
-
 	if (true == UEngineInput::IsDown('Q'))
 	{
 		FireAng = FireAng;
@@ -231,8 +230,29 @@ void Bobblefire::Tick(float _DeltaTime)
 		UCollision* Collision = Result[0];
 		AActor* Ptr = Collision->GetOwner();
 		Bobble* bobble = dynamic_cast<Bobble*>(Ptr);
-
 		if (nullptr == bobble)
+		{
+			MsgBoxAssert("터져야겠지....");
+		}
+		locate = GetActorLocation();
+		if (count == 1)
+		{
+			setlocate(locatePtr, locate);
+		}
+		if (count == 2)
+		{ 
+  			Destroy();
+		}
+		
+	}
+	else if (true == BodyCollision->CollisionCheck(ColliderOrder::Ceil, Result))
+	{
+		count += 1;
+		// 이런식으로 상대를 사용할수 있다.
+		UCollision* Collision = Result[0];
+		AActor* Ptr = Collision->GetOwner();
+		Ceil* ceil = dynamic_cast<Ceil*>(Ptr);
+		if (nullptr == ceil)
 		{
 			MsgBoxAssert("터져야겠지....");
 		}
@@ -245,7 +265,6 @@ void Bobblefire::Tick(float _DeltaTime)
 		{
 			Destroy();
 		}
-		
 	}
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);

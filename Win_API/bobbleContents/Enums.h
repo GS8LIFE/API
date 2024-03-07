@@ -10,7 +10,8 @@ protected:
 enum class ColliderOrder
 {
 	bobble,
-	firebobble
+	firebobble,
+	Ceil
 };
 
 enum class NowState

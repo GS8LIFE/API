@@ -97,17 +97,26 @@ void PlayLevel::BeginPlay()
 
 void PlayLevel::set_map_vector()
 {
-	x = (collideLocate.X - 205) / 16;
 	y = (collideLocate.Y - 65) / 16;
-	if (x > 0)
-	{
-		x = (collideLocate.X - 221) / 32 + 1;
-	}
+	x = (collideLocate.X - 205) / 16;
 	if (y > 0)
 	{
 		y = (collideLocate.Y - 81) / 32 + 1;
+		if (y % 2 == 1)
+		{
+			x = (collideLocate.X - 236) / 32 + 1;
+		}
+		else
+		{
+			x = (collideLocate.X - 221) / 32 + 1;
+		}
+	}
+	else
+	{
+		x = (collideLocate.X - 205) / 32 + 1;
 	}
 }
+
 
 void PlayLevel::fire_bobble()
 {
@@ -149,7 +158,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 		if (firebobble->IsDestroy())
 		{
  			set_map_vector();
-			if (map[y][x] = '/' && y % 2 == 1   )
+			if (map[y][x] == '/' && y % 2 == 1   )
 			{
 
 				Bobble* NewB = SpawnActor<Bobble>();

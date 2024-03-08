@@ -85,25 +85,38 @@ void PlayLevel::BeginPlay()
 			}
 			else
 			{
-				Bobble* NewB = SpawnActor<Bobble>();
+				Bobble* NewB = SpawnActor<Bobble>();	
 				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 205 + (32 * col_idx), 65 + (32 * row_idx) });
 			}
-
+			
 		}
 	}
 	fire_bobble();
 }
 
 
-void PlayLevel::check_x(int _x)
+int PlayLevel::check_x(int _x,int _y)
 {
 	if (_x > 0) 
 	{
-		_x = (collideLocate.X - 205) / 32 + 1;
+		if (y % 2 == 1)
+		{	
+			_x = (collideLocate.X - 237) / 32 + 1;
+		}
+		else
+		{
+		_x = (collideLocate.X - 221) / 32 + 1;
+		}
 	}
+	else
+	return _x;
 }
 
+std::map<int, std::vector<char>> PlayLevel::getmap()
+{
+	return map;
+}
 void PlayLevel::set_map_vector()
 {
 	y = (collideLocate.Y - 65) / 16;
@@ -111,18 +124,11 @@ void PlayLevel::set_map_vector()
 	if (y > 0)
 	{
 		y = (collideLocate.Y - 81) / 32 + 1;
-		if (y % 2 == 1)
-		{
-			check_x(x);
-		}
-		else
-		{
-			check_x(x);
-		}
+		x = check_x(x,y);
 	}
 	else
 	{
-		check_x(x);
+		x = check_x(x,y);
 	}
 }
 
@@ -144,31 +150,70 @@ void PlayLevel::remove_bobble(int _row, int _col, char _color)
 {
 	visited.clear();
 	visit(_row, _col, _color);
+	if (visited.size() >= 3)
+	{
+		remove_visited_bubbles();
+	//	remove_hanging_bubbles();
+	}
 
 }
 void PlayLevel::visit(int _row, int _col, char _color)
 {
+	std::pair<int, int> p;
+	p = std::make_pair(_row, _col);
+	char col = map[_col][_row];
 	if (_row < 0 or _row >= 11  or _col < 0 or _col >= 8)
 	{
 		return;
 	}
-	else if (_color != map[_row][_col])
+	if (_color != col)
 	{
 		return;
 	}
-	else if (true)
+	if (map[_col][_row] == '/' || map[_col][_row] == '.')
 	{
 		return;
 	}
-	if (std::find(visited.begin(), visited.end(), std::make_pair(_row, _col)) != visited.end()) {
+	if (std::find(visited.begin(), visited.end(), p) != visited.end()) {
 		return; // 이미 방문한 곳이면 함수를 빠져나감
 	}
 
 	// 방문 처리: (row_idx, col_idx)  visited 벡터에 추가
 	visited.push_back(std::make_pair(_row, _col));
 
-}
+	int rows[] = { 0, -1, -1, 0, 1, 1 };
+	int cols[] = { -1, -1, 0, 1, 0, -1 };
 
+	if (_row % 2 == 1) {
+		int rows[] = { 0, -1, -1, 0, 1, 1 };
+		int cols[] = { -1, 0, 1, 1, 1, 0 };
+	}	
+
+	for (int i = 0; i < 6; i++) {
+		visit(_row + rows[i], _col + cols[i], _color);
+	}
+
+}
+void PlayLevel::remove_visited_bubbles()
+{
+	std::pair<int, int> p;
+
+	std::vector<std::pair<int,int>> bubbles_to_remove;
+	
+	for (int col = 0; col < 11; col++)
+	{
+		for (int row = 0; row < 7; row++)
+		{
+			p = std::make_pair(row, col);
+			if (std::find(visited.begin(), visited.end(), p) != visited.end())
+			{
+				map[col][row] = '.';
+
+			}
+		}
+	}
+
+}
 
 void PlayLevel::fired_bobble()
 {
@@ -197,13 +242,13 @@ void PlayLevel::Tick(float _DeltaTime) {
 		if (firebobble->IsDestroy())
 		{
  			set_map_vector();
-			if (map[y][x] == '/' && y % 2 == 1   )
+			if (map[y][x] == '/' && y % 2 == 1   ) // 짝수는 8번째 자리가 없기에 8번째에 놓아졌을 때 7번째로 옮기는 작업 
 			{
 
 				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(now);
 				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
-				map[y][x] = now;
+				map[y][x] = now; 
 			}
 			else {
 				if (y % 2 == 1)
@@ -221,7 +266,8 @@ void PlayLevel::Tick(float _DeltaTime) {
 					map[y][x] = now;
 				}
 			}
-			CellCount++;
+			remove_bobble(x, y, now);
+			CellCount++ ;
 			firing = false;
 		}
 		else if (firebobble->IsDestroy() == false)
@@ -234,5 +280,5 @@ void PlayLevel::Tick(float _DeltaTime) {
 		fired_bobble();
 	}	
 
-
+	int a = map.size();
 }

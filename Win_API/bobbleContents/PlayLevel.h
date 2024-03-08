@@ -26,10 +26,13 @@ public:
 	}
 	void remove_bobble(int _row,int _col,char _Color);
 	void visit(int _row, int _col, char _Color);
-	void check_x(int _x);
+	void remove_visited_bubbles();
+//	void remove_hanging_bubbles();
 	void set_map_vector();
+	int check_x(int _x,int _y);
+	std::map<int, std::vector<char>> getmap();
 
-
+	
 
 protected:
 	void BeginPlay() override;

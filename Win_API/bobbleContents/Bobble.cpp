@@ -5,11 +5,11 @@
 #include "Enums.h"
 Bobble::Bobble()
 {
-
+	
 }
 Bobble::~Bobble()
 {
-
+	
 }
 void Bobble::AddMoveVector(const FVector& _DirDelta)
 {
@@ -17,6 +17,7 @@ void Bobble::AddMoveVector(const FVector& _DirDelta)
 }
 void Bobble::BeginPlay()
 {
+	
 	AActor::BeginPlay();
 	Renderer = CreateImageRenderer(RenderOrder::bobble);
 	Renderer->SetImage("Bobble.png");
@@ -40,11 +41,14 @@ void Bobble::BeginPlay()
 	Renderer->CreateAnimation("Wmove", "Bobble.png", 174, 176, 0.2f, true);
 
 
-
 	BodyCollision = CreateCollision(ColliderOrder::bobble);
 	BodyCollision->SetScale({ 32, 32 });
 	BodyCollision->SetColType(ECollisionType::CirCle);
 	StateChange(NowState::Idle);
+}
+void Bobble::setmap(std::map<int, std::vector<char>> _map)
+{
+	map = _map;
 }
 void Bobble::get_bubble(char _color)
 {
@@ -211,5 +215,8 @@ void Bobble::Tick(float _DeltaTime)
 	{
 		AddMoveVector(FVector::Right * _DeltaTime);
 	}	
-
+	if (color == '.')
+	{
+		Destroy();
+	}
 }

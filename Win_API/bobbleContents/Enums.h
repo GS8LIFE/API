@@ -1,8 +1,13 @@
 #pragma once
-class Enums
+#include <iostream>
+#include <map>
+#include <vector>
+class Enums 
 {
 public:
 	float* AnglePtr = &Angle;
+	std::map<int, std::vector<char>> nowmap;
+
 protected:
 	float Angle = 0.0f;
 };

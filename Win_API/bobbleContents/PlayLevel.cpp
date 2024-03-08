@@ -64,6 +64,7 @@ void PlayLevel::BeginPlay()
 	map[10] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[11] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 
+	nowmap = map;
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{
 		const auto& row = map[row_idx];
@@ -82,12 +83,14 @@ void PlayLevel::BeginPlay()
 				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 221 + (32 * col_idx), 65 + (32 * row_idx) });
+				NewB->setmap(getmap(),row_idx,col_idx);
 			}
 			else
 			{
 				Bobble* NewB = SpawnActor<Bobble>();	
 				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 205 + (32 * col_idx), 65 + (32 * row_idx) });
+				NewB->setmap(getmap(), row_idx, col_idx);
 			}
 			
 		}
@@ -161,11 +164,11 @@ void PlayLevel::visit(int _row, int _col, char _color)
 {
 	std::pair<int, int> p;
 	p = std::make_pair(_row, _col);
-	char col = map[_col][_row];
 	if (_row < 0 or _row >= 11  or _col < 0 or _col >= 8)
 	{
 		return;
 	}
+	char col = map[_col][_row];
 	if (_color != col)
 	{
 		return;
@@ -248,7 +251,8 @@ void PlayLevel::Tick(float _DeltaTime) {
 				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(now);
 				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
-				map[y][x] = now; 
+				NewB->setmap(getmap(),x,y);
+				map[y][x] = now;
 			}
 			else {
 				if (y % 2 == 1)
@@ -256,6 +260,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
 					NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * y) });
+					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
 				}
 				else
@@ -263,10 +268,12 @@ void PlayLevel::Tick(float _DeltaTime) {
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
 					NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * y) });
+					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
 				}
 			}
 			remove_bobble(x, y, now);
+			nowmap = getmap();
 			CellCount++ ;
 			firing = false;
 		}

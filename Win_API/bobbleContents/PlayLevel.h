@@ -11,6 +11,7 @@ class PlayLevel : public ULevel , public AActor , public Enums
 {
 public:
 	// constrcuter destructer
+	
 	PlayLevel();
 	~PlayLevel();
 	void fire_bobble();

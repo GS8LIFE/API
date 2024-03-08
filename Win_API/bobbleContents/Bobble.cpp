@@ -40,18 +40,20 @@ void Bobble::BeginPlay()
 	Renderer->CreateAnimation("Bmove", "Bobble.png", 149, 151, 0.2f, true);
 	Renderer->CreateAnimation("Wmove", "Bobble.png", 174, 176, 0.2f, true);
 
-
 	BodyCollision = CreateCollision(ColliderOrder::bobble);
 	BodyCollision->SetScale({ 32, 32 });
 	BodyCollision->SetColType(ECollisionType::CirCle);
 	StateChange(NowState::Idle);
 }
-void Bobble::setmap(std::map<int, std::vector<char>> _map)
+void Bobble::setmap(std::map<int, std::vector<char>> _map, int _row, int _col)
 {
 	map = _map;
+	row = _row;
+	col = _col;
 }
 void Bobble::get_bubble(char _color)
 {
+
 	color = _color;
 	switch (color)
 	{
@@ -215,7 +217,7 @@ void Bobble::Tick(float _DeltaTime)
 	{
 		AddMoveVector(FVector::Right * _DeltaTime);
 	}	
-	if (color == '.')
+	if (nowmap[row][col] != map[row][col])
 	{
 		Destroy();
 	}

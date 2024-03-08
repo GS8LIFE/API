@@ -181,6 +181,7 @@
     <ClInclude Include="PlayLevel.h" />
     <ClInclude Include="shooter.h" />
     <ClInclude Include="TitleLevel.h" />
+    <ClInclude Include="ValueSotre.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arrow.cpp" />

@@ -2,7 +2,6 @@
 #include <EngineCore\Actor.h>
 #include "Enums.h"
 #include <EngineBase/EngineRandom.h>
-#include "PlayLevel.h"
 
 // Ό³Έν :
 class Bobble : public AActor, public UEngineRandom, public Enums
@@ -18,7 +17,7 @@ public:
 	Bobble& operator=(const Bobble& _Other) = delete;
 	Bobble& operator=(Bobble&& _Other) noexcept = delete;
 	void get_bubble(char _color);
-	void setmap(std::map<int, std::vector<char>> _map);
+	void setmap(std::map<int, std::vector<char>> _map, int _row, int _col);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -52,6 +51,8 @@ private:
 	int AnimationFrame = 0;
 	char color = '.';
 	float AlphaTime = 0.0f;
+	int row = 0;
+	int col = 0;
 	bool Dir = false;
 	
 

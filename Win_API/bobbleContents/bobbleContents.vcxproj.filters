@@ -39,6 +39,7 @@
       <Filter>Play\Bobble</Filter>
     </ClInclude>
     <ClInclude Include="DegreeShare.h" />
+    <ClInclude Include="ValueSotre.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />

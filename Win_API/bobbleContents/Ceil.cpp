@@ -23,7 +23,7 @@ void Ceil::BeginPlay()
 	Renderer->ChangeAnimation("idle");
 
 	BodyCollision = CreateCollision(ColliderOrder::Ceil);
-	BodyCollision->SetScale({ 640, 115 });
+	BodyCollision->SetScale({ 1000, 115 });
 	BodyCollision->SetColType(ECollisionType::Rect);
 }
 

@@ -2,7 +2,7 @@
 #include <EngineCore\Actor.h>
 #include "Enums.h"
 // Ό³Έν :
-class arrow : public AActor, public Enums
+class arrow : public AActor, public helper
 {
 public:
 	// constrcuter destructer

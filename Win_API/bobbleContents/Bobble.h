@@ -4,7 +4,7 @@
 #include <EngineBase/EngineRandom.h>
 
 // Ό³Έν :
-class Bobble : public AActor, public UEngineRandom, public Enums
+class Bobble : public AActor, public UEngineRandom, public helper
 {
 public:
 	// constrcuter destructer
@@ -18,6 +18,7 @@ public:
 	Bobble& operator=(Bobble&& _Other) noexcept = delete;
 	void get_bubble(char _color);
 	void setmap(std::map<int, std::vector<char>> _map, int _row, int _col);
+	void getnowmap(std::map<int, std::vector<char>> _nowmap);
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -44,6 +45,7 @@ private:
 	FVector MoveVector = FVector::Zero;
 	FVector MoveAcc = FVector::Right * 500.0f;
 	std::map<int, std::vector<char>> map;
+	std::map<int, std::vector<char>> nowmap;
 	float CoolTime = 0.0f;
 	int WaitTime = 0;
 	float AnimationTime = 0.0f;

@@ -7,7 +7,7 @@
 #include "Bobble.h"
 // Ό³Έν :
 class arrow;
-class PlayLevel : public ULevel , public AActor , public Enums
+class PlayLevel : public ULevel , public AActor , public helper
 {
 public:
 	// constrcuter destructer
@@ -30,6 +30,11 @@ public:
 	void remove_visited_bubbles();
 //	void remove_hanging_bubbles();
 	void set_map_vector();
+
+	std::map<int, std::vector<char>>* getnowmap()
+	{
+		return &map;
+	}
 	int check_x(int _x,int _y);
 	std::map<int, std::vector<char>> getmap();
 
@@ -49,8 +54,11 @@ private:
 	int CellCount = 0;
 	std::vector<std::pair<int, int>> visited;
 	std::map<int, std::vector<char>> map;
+	std::map<int, std::vector<char>>* mapPtr;
+	std::map<std::pair<int, int>, std::vector<Bobble*>> nowbobble;
 	arrow* Arrow = nullptr;
-	Bobblefire* firebobble = nullptr;
+	Bobblefire* firebobble = nullptr; 
+	Bobble* bobblePtr = nullptr;
 	Bobble* nextbobble = nullptr;
 	FVector collideLocate = FVector::Zero - FVector{ 0.0f, 0.0f, 0.0f, 0.0f };
 };

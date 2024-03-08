@@ -44,14 +44,18 @@ char Bobblefire::get_bubble(std::map<int, std::vector<char>> _map)
 	std::vector<char> colors;
 	for (int i = 0; i < 11; i++)
 	{
-		for (int j = 0; j < 7; j++)
+		for (int j = 0; j < 8; j++)
 		{
 			char bobbleColor = _map[i][j];
-			if (bobbleColor != '.' && bobbleColor != '/')
+			if (bobbleColor != '.' && bobbleColor != '/') 
 			{
 				colors.push_back(bobbleColor);
 			}
 		}
+	}
+	if (colors.size() < 0)
+	{
+		return 'G';
 	}
 	int choice = RandomInt(0, colors.size()-1);
   	return colors[choice];

@@ -51,6 +51,10 @@ void Bobble::setmap(std::map<int, std::vector<char>> _map, int _row, int _col)
 	row = _row;
 	col = _col;
 }
+void Bobble::getnowmap(std::map<int, std::vector<char>> _nowmap)
+{
+	nowmap = _nowmap;
+}
 void Bobble::get_bubble(char _color)
 {
 
@@ -217,8 +221,7 @@ void Bobble::Tick(float _DeltaTime)
 	{
 		AddMoveVector(FVector::Right * _DeltaTime);
 	}	
-	if (nowmap[row][col] != map[row][col])
+	if (true)
 	{
-		Destroy();
 	}
 }

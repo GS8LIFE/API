@@ -50,13 +50,15 @@ void PlayLevel::BeginPlay()
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
 
+	helper maphelper;
+
 	//버블 배열
-	map[0] = { '.', '.', 'Y', 'Y', 'S', 'S', 'G', 'G' };
-	map[1] = { '.', '.', 'Y', 'Y', 'S', 'S', 'G', '/' };
-	map[2] = { '.', '.', 'G', 'G', 'R', 'R', 'Y', 'Y' };
-	map[3] = { '.', '.', 'G', 'R', 'R', 'Y', 'Y', '/' };
-	map[4] = { '.', '.', '.', 'R', '.', '.', '.', '.'};
-	map[5] = { '.', '.', '.', 'R', '.', '.', '.', '/' };
+	map[0] = { '.', '.', '.', '.', 'G', '.', '.', 'G' };
+	map[1] = { '.', '.', '.', 'G', '.', '.', '.', '/' };
+	map[2] = { '.', '.', '.', '.', '.', '.', '.', '.' };
+	map[3] = { '.', '.', '.', '.', '.', '.', '.', '/' };
+	map[4] = { '.', '.', '.', '.', '.', '.', '.', '.'};
+	map[5] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 	map[6] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[7] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 	map[8] = { '.', '.', '.', '.', '.', '.', '.', '.' };
@@ -64,7 +66,8 @@ void PlayLevel::BeginPlay()
 	map[10] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[11] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 
-	nowmap = map;
+	maphelper.setnowmap(getnowmap());
+
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
 	{
 		const auto& row = map[row_idx];
@@ -84,6 +87,8 @@ void PlayLevel::BeginPlay()
 				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 221 + (32 * col_idx), 65 + (32 * row_idx) });
 				NewB->setmap(getmap(),row_idx,col_idx);
+				NewB->getnowmap(maphelper.nowmap);
+				nowbobble[{col_idx, row_idx}].push_back(NewB);
 			}
 			else
 			{
@@ -91,8 +96,9 @@ void PlayLevel::BeginPlay()
 				NewB->get_bubble(col);
 				NewB->SetActorLocation({ 205 + (32 * col_idx), 65 + (32 * row_idx) });
 				NewB->setmap(getmap(), row_idx, col_idx);
-			}
-			
+				NewB->getnowmap(maphelper.nowmap);
+				nowbobble[{col_idx, row_idx}].push_back(NewB);
+				}
 		}
 	}
 	fire_bobble();
@@ -162,13 +168,21 @@ void PlayLevel::remove_bobble(int _row, int _col, char _color)
 }
 void PlayLevel::visit(int _row, int _col, char _color)
 {
+	char col;
 	std::pair<int, int> p;
 	p = std::make_pair(_row, _col);
-	if (_row < 0 or _row >= 11  or _col < 0 or _col >= 8)
+	if (_row < 0 or _row >= 8  or _col < 0 or _col >= 11)
 	{
 		return;
 	}
-	char col = map[_col][_row];
+	if (_col % 2 && _row == 8)
+	{
+		col = map[_col][7];
+	}
+	else
+	{
+		col = map[_col][_row];
+	}
 	if (_color != col)
 	{
 		return;
@@ -200,22 +214,25 @@ void PlayLevel::visit(int _row, int _col, char _color)
 void PlayLevel::remove_visited_bubbles()
 {
 	std::pair<int, int> p;
-
-	std::vector<std::pair<int,int>> bubbles_to_remove;
 	
 	for (int col = 0; col < 11; col++)
 	{
-		for (int row = 0; row < 7; row++)
+		for (int row = 0; row < 8; row++)
 		{
 			p = std::make_pair(row, col);
 			if (std::find(visited.begin(), visited.end(), p) != visited.end())
 			{
 				map[col][row] = '.';
 
+				auto& bobbles = nowbobble[{row, col}];
+				for (auto bobble : bobbles) {
+					bobble->Destroy();
+				}
+
 			}
 		}
 	}
-
+	int a = 0;
 }
 
 void PlayLevel::fired_bobble()
@@ -253,6 +270,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
 				NewB->setmap(getmap(),x,y);
 				map[y][x] = now;
+				nowbobble[{ x, y}].push_back(NewB);
 			}
 			else {
 				if (y % 2 == 1)
@@ -262,7 +280,8 @@ void PlayLevel::Tick(float _DeltaTime) {
 					NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * y) });
 					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
-				}
+					nowbobble[{x, y}].push_back(NewB);
+				} 
 				else
 				{
 					Bobble* NewB = SpawnActor<Bobble>();
@@ -270,6 +289,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 					NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * y) });
 					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
+					nowbobble[{x, y}].push_back(NewB);
 				}
 			}
 			remove_bobble(x, y, now);

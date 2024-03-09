@@ -27,6 +27,7 @@ public:
 	}
 	void remove_bobble(int _row,int _col,char _Color);
 	void visit(int _row, int _col, char _Color);
+	void visit(int _row, int _col);
 	void remove_visited_bubbles();
 	void remove_not_visited_bubbles();
 	void remove_hanging_bubbles();

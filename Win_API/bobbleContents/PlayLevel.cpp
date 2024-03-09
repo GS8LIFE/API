@@ -53,13 +53,13 @@ void PlayLevel::BeginPlay()
 	helper maphelper;
 
 	//버블 배열
-	map[0] = { 'G', '.', '.', '.', 'G', '.', 'G', 'G' };
-	map[1] = { 'G', '.', '.', 'G', 'G', '.', 'G', '/' };
-	map[2] = { '.', '.', '.', '.', '.', '.', '.', '.' };
-	map[3] = { '.', '.', '.', '.', '.', '.', '.', '/' };
-	map[4] = { '.', '.', '.', '.', '.', '.', '.', '.'};
-	map[5] = { '.', '.', '.', '.', '.', '.', '.', '/' };
-	map[6] = { '.', '.', '.', '.', '.', '.', '.', '.' };
+	map[0] = { 'G', '.', '.', '.', 'G', 'G', 'G', 'G' };
+	map[1] = { 'G', '.', '.', 'R', 'G', 'R', 'G', '/' };
+	map[2] = { '.', '.', '.', '.', '.', '.', 'R', '.' };
+	map[3] = { '.', '.', '.', '.', '.', '.', 'B', '/' };
+	map[4] = { '.', '.', '.', '.', '.', '.', 'W', '.'};
+	map[5] = { '.', '.', '.', '.', '.', '.', 'B', '/' };
+	map[6] = { '.', '.', '.', '.', '.', '.', 'R', '.' };
 	map[7] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 	map[8] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[9] = { '.', '.', '.', '.', '.', '.', '.', '/' };
@@ -162,7 +162,8 @@ void PlayLevel::remove_bobble(int _row, int _col, char _color)
 	if (visited.size() >= 3)
 	{
 		remove_visited_bubbles();
-	//	remove_hanging_bubbles();
+
+		remove_hanging_bubbles();
 	}
 
 }
@@ -208,6 +209,39 @@ void PlayLevel::visit(int _row, int _col, char _color)
 
 	for (int i = 0; i < 6; i++) {
 		visit(_row + rows[i], _col + cols[i], _color);
+	}
+
+}
+void PlayLevel::visit(int _col, int _row)
+{
+	std::pair<int, int> p;
+	p = std::make_pair(_col, _row);
+	if (_row < 0 or _row >= 8 or _col < 0 or _col >= 11)
+	{
+		return;
+	}
+	auto a = map[_col][_row];
+	if (map[_col][_row] == '/' || map[_col][_row] == '.')
+	{
+		return;
+	}
+	if (std::find(visited.begin(), visited.end(), p) != visited.end()) {
+		return; // 이미 방문한 곳이면 함수를 빠져나감
+	}
+
+	// 방문 처리: (row_idx, col_idx)  visited 벡터에 추가
+	visited.push_back(std::make_pair(_col, _row));
+
+	int cols[] = { 0, -1, -1, 0, 1, 1 };
+	int rows[] = { -1, -1, 0, 1, 0, -1 };
+
+	if (_col % 2 == 1) {
+		int cols[] = { 0, -1, -1, 0, 1, 1 };
+		int rows[] = { -1, 0, 1, 1, 1, 0 };
+	}
+
+	for (int i = 0; i < 6; i++) {
+		visit(_col + cols[i], _row + rows[i]);
 	}
 
 }
@@ -264,6 +298,14 @@ void PlayLevel::remove_not_visited_bubbles()
 void PlayLevel::remove_hanging_bubbles()
 {
 	visited.clear();
+	for (int row = 0; row < 7; row++)
+	{
+		if (map[0][row] != '.')
+		{
+			visit(0, row);
+		}
+	}
+	remove_not_visited_bubbles();
 }
 void PlayLevel::fired_bobble()
 {

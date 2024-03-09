@@ -53,8 +53,8 @@ void PlayLevel::BeginPlay()
 	helper maphelper;
 
 	//버블 배열
-	map[0] = { '.', '.', '.', '.', 'G', '.', '.', 'G' };
-	map[1] = { '.', '.', '.', 'G', '.', '.', '.', '/' };
+	map[0] = { 'G', '.', '.', '.', 'G', '.', 'G', 'G' };
+	map[1] = { 'G', '.', '.', 'G', 'G', '.', 'G', '/' };
 	map[2] = { '.', '.', '.', '.', '.', '.', '.', '.' };
 	map[3] = { '.', '.', '.', '.', '.', '.', '.', '/' };
 	map[4] = { '.', '.', '.', '.', '.', '.', '.', '.'};
@@ -227,6 +227,30 @@ void PlayLevel::remove_visited_bubbles()
 				auto& bobbles = nowbobble[{row, col}];
 				for (auto bobble : bobbles) {
 					bobble->Destroy();
+					nowbobble.erase({ row,col });
+				}
+
+			}
+		}
+	}
+	int a = 0;
+}
+void PlayLevel::remove_not_visited_bubbles()
+{
+	std::pair<int, int> p;
+
+	for (int col = 0; col < 11; col++)
+	{
+		for (int row = 0; row < 8; row++)
+		{
+			p = std::make_pair(row, col);
+			if (std::find(visited.begin(), visited.end(), p) == visited.end())
+			{
+				map[col][row] = '.';
+
+				auto& bobbles = nowbobble[{row, col}];
+				for (auto bobble : bobbles) {
+					bobble->Destroy();
 				}
 
 			}
@@ -235,6 +259,12 @@ void PlayLevel::remove_visited_bubbles()
 	int a = 0;
 }
 
+
+
+void PlayLevel::remove_hanging_bubbles()
+{
+	visited.clear();
+}
 void PlayLevel::fired_bobble()
 {
 	nextbobble->Destroy();

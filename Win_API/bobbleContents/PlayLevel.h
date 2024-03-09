@@ -28,7 +28,8 @@ public:
 	void remove_bobble(int _row,int _col,char _Color);
 	void visit(int _row, int _col, char _Color);
 	void remove_visited_bubbles();
-//	void remove_hanging_bubbles();
+	void remove_not_visited_bubbles();
+	void remove_hanging_bubbles();
 	void set_map_vector();
 
 	std::map<int, std::vector<char>>* getnowmap()

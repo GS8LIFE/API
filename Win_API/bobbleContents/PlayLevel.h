@@ -7,7 +7,7 @@
 #include "Bobble.h"
 // Ό³Έν :
 class arrow;
-class PlayLevel : public ULevel , public AActor , public helper
+class PlayLevel : public ULevel , public AActor , public helper 
 {
 public:
 	// constrcuter destructer
@@ -16,6 +16,7 @@ public:
 	~PlayLevel();
 	void fire_bobble();
 	void fired_bobble();
+	void nextLevel();
 	// delete Function
 	PlayLevel(const PlayLevel& _Other) = delete;
 	PlayLevel(PlayLevel&& _Other) noexcept = delete;
@@ -32,16 +33,13 @@ public:
 	void remove_not_visited_bubbles();
 	void remove_hanging_bubbles();
 	void set_map_vector();
-
 	std::map<int, std::vector<char>>* getnowmap()
 	{
 		return &map;
 	}
 	int check_x(int _x,int _y);
 	std::map<int, std::vector<char>> getmap();
-
-	
-
+	void mapLevel();
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -49,6 +47,7 @@ protected:
 	bool fire = false;
 	char next = '.';
 private:
+	int nowlevel = 0;
 	int x = 0;
 	int y = 0;
 	bool firing = false;
@@ -63,5 +62,7 @@ private:
 	Bobble* bobblePtr = nullptr;
 	Bobble* nextbobble = nullptr;
 	FVector collideLocate = FVector::Zero - FVector{ 0.0f, 0.0f, 0.0f, 0.0f };
+
+
 };
 

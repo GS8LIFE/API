@@ -66,7 +66,7 @@ void bobbleCore::BeginPlay()
 	UWindowImage* Mask = UEngineResourcesManager::GetInst().FindImg("arrow_Mask.bmp");
 	Rot->SetRotationMaskImage(0, Mask, 0);
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<PlayLevel>("Play");
+	CreateLevel<PlayLevel>("Level1");
 	ChangeLevel("Title");
 }
 

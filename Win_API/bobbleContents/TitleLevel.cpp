@@ -19,6 +19,8 @@ void TitleLevel::Tick(float _DeltaTime)
 {
 	if (UEngineInput::IsDown('P'))
 	{
-		GEngine->ChangeLevel("Play");
+		GEngine->ChangeLevel("Level1");
+		GEngine->DestroyLevel("Title");
+		
 	}
 }

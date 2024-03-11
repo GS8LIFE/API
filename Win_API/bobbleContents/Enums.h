@@ -2,6 +2,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+
 class helper
 {
 public:
@@ -14,7 +15,19 @@ public:
 		nowmapPtr = new std::map<int, std::vector<char>>(*_mapPtr);
 		nowmap = *nowmapPtr;
 	}
+
+	void setLevel(int _level)
+	{
+		Level = _level;
+	}
+
+	int getLevel()
+	{
+		return Level;
+	}
 protected:
+	static int Level;
+	int* LevelPtr = &Level;
 	float Angle = 0.0f;
 };
 

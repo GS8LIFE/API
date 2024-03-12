@@ -9,11 +9,8 @@ public:
 	float* AnglePtr = &Angle;
 
 	std::map<int, std::vector<char>> nowmap;
-	std::map<int, std::vector<char>>* nowmapPtr;
 	void setnowmap(std::map<int, std::vector<char>>* _mapPtr)
 	{
-		nowmapPtr = new std::map<int, std::vector<char>>(*_mapPtr);
-		nowmap = *nowmapPtr;
 	}
 
 	void setLevel(int _level)

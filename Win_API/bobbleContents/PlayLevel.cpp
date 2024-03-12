@@ -151,7 +151,7 @@ void PlayLevel::remove_bobble(int _row, int _col, char _color)
 	{
 		remove_visited_bubbles();
 
-		remove_hanging_bubbles();
+	 	remove_hanging_bubbles();
 	}
 
 }
@@ -303,14 +303,14 @@ void PlayLevel::remove_not_visited_bubbles()
 void PlayLevel::remove_hanging_bubbles()
 {
 	visited.clear();
-	for (int row = 0; row < 7; row++)
+	for (int row = 0; row < 8; row++)
 	{
 		if (map[0][row] != '.')
 		{
 			visit(row, 0);
 		}
-	}
-	remove_not_visited_bubbles();
+	} 
+  	 remove_not_visited_bubbles();
 }
 void PlayLevel::fired_bobble()
 {
@@ -337,9 +337,31 @@ void PlayLevel:: nextLevel()
 {
 	std::string str;
 	str = "Level";
+	if (Level < 0)
+	{
+		helper::Level = 0;
+		return;
+	}
 	str = str + std::to_string(Level);
 	GEngine->DestroyLevel(str);
 	helper::Level++;
+	str = "Level";
+	str = str + std::to_string(Level);
+	GEngine->CreateLevel<PlayLevel>(str);
+	GEngine->ChangeLevel(str);
+}
+void PlayLevel::PreLevel()
+{
+	std::string str;
+	str = "Level";
+	if (Level < 0)
+	{
+		helper::Level = 0;
+		return;
+	}
+	str = str + std::to_string(Level);
+	GEngine->DestroyLevel(str);
+	helper::Level--;
 	str = "Level";
 	str = str + std::to_string(Level);
 	GEngine->CreateLevel<PlayLevel>(str);
@@ -359,9 +381,13 @@ void PlayLevel::Tick(float _DeltaTime) {
 		cur_bobble = false;
 		firing = true;
 	}
-	if (UEngineInput::IsDown('R'))
+	if (UEngineInput::IsDown('L'))
 	{
 		nextLevel();
+	}
+	if (UEngineInput::IsDown('K'))
+	{
+		PreLevel();
 	}
 	else if (firing == true) 
 	{

@@ -17,6 +17,7 @@ public:
 	void fire_bobble();
 	void fired_bobble();
 	void nextLevel();
+	void PreLevel();
 	// delete Function
 	PlayLevel(const PlayLevel& _Other) = delete;
 	PlayLevel(PlayLevel&& _Other) noexcept = delete;

@@ -73,7 +73,7 @@ private:
 	bool Dir = false;
 	float FireAng = 0.0f;
 	float* FireAngPtr = &FireAng;
-	float speed = 1.5;
+	float speed = 2.0;
 	void AddMoveVector(const FVector& _DirDelta);
 
 };

@@ -53,9 +53,9 @@ char Bobblefire::get_bubble(std::map<int, std::vector<char>> _map)
 			}
 		}
 	}
-	if (colors.size() < 0)
+	if (colors.size() <= 0)
 	{
-		return 'G';
+		return '.';
 	}
 	int choice = RandomInt(0, colors.size()-1);
   	return colors[choice];

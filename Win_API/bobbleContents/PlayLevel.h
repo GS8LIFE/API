@@ -24,7 +24,7 @@ public:
 	{
 		collideLocate = _collideLocate;
 	}
-
+	void all_down();
 	void set_map_vector();
 	void fire_bobble();
 	void fired_bobble();
@@ -48,11 +48,12 @@ public:
 	int check_x(int _x,int _y);
 	void mapLevel();
 protected:
-	void BeginPlay() override;
-	void Tick(float _DeltaTime) override;
+	char next = '.';
 	bool cur_bobble = false;
 	bool fire = false;
-	char next = '.';
+	bool all_down_switch = false;
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 
 	//static
 

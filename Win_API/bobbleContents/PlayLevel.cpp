@@ -120,11 +120,11 @@ std::map<int, std::vector<char>> PlayLevel::getmap()
 }
 void PlayLevel::set_map_vector()
 {
-	y = (collideLocate.Y - 65) / 16;
+	y = (collideLocate.Y - 65 - (downCount * 32)) / 16 ;
 	x = (collideLocate.X - 205) / 16;
 	if (y > 0)
 	{
-		y = (collideLocate.Y - 81) / 32 + 1;
+		y = (collideLocate.Y - 81 - (downCount * 32)) / 32 + 1;
 		x = check_x(x,y);
 	}
 	else
@@ -298,9 +298,23 @@ void PlayLevel::remove_not_visited_bubbles()
 			}
 		}
 	}
-	int a = 0;
 }
 
+void PlayLevel::all_down()
+{
+	for (int col = 0; col < 11; col++)
+	{
+		for (int row = 0; row < 8; row++)
+		{
+			{
+				auto bobbles = nowbobble[{row, col}]; // std::vector<Bobble*>
+				for (auto bobble : bobbles) { // bobbles에서 원소들을 받아오는거기에 Bobble* 
+					bobble->AddActorLocation({ 0, 32 });
+				}
+			}
+		}
+	}
+}
 
 
 void PlayLevel::remove_hanging_bubbles()
@@ -329,12 +343,6 @@ void PlayLevel::fired_bobble()
 	cur_bobble = true;
 }
 
-void up(int* _levelptr)
-{
-	// 내가 가리키는 번지의 값에 접근하겠다.
-	*_levelptr = *_levelptr + 1;
-	// 그려면
-}
 
 void PlayLevel:: nextLevel()
 {
@@ -377,6 +385,12 @@ void PlayLevel::PreLevel()
 }
 
 void PlayLevel::Tick(float _DeltaTime) {
+
+	if (all_down_switch)
+	{
+		all_down();
+		all_down_switch = false;
+	}
 	if (UEngineInput::IsDown('Z'))
 	{
 	GEngine->EngineDebugSwitch();
@@ -385,7 +399,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		CellCount = 5;
 	}
-	if (nowbobble.size() < 0)
+	if (nowbobble.size() <= 0)
 	{
 		nextLevel();
 	}
@@ -415,7 +429,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 
 				Bobble* NewB = SpawnActor<Bobble>();
 				NewB->get_bubble(now);
-				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * y) }); 
+				NewB->SetActorLocation({ 221 + (32 * (x-1)), 65 + (32 * (y + downCount)) }); 
 				NewB->setmap(getmap(),x,y);
 				map[y][x] = now;
 				nowbobble[{ x, y}].push_back(NewB);
@@ -425,7 +439,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 				{
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
-					NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * y) });
+					NewB->SetActorLocation({ 221 + (32 * x), 65 + (32 * (y + downCount)) });
 					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
 					nowbobble[{x, y}].push_back(NewB);
@@ -434,15 +448,19 @@ void PlayLevel::Tick(float _DeltaTime) {
 				{
 					Bobble* NewB = SpawnActor<Bobble>();
 					NewB->get_bubble(now);
-					NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * y) });
+					NewB->SetActorLocation({ 205 + (32 * x), 65 + (32 * (y + downCount)) });
 					NewB->setmap(getmap(),x,y);
 					map[y][x] = now;
-					nowbobble[{x, y}].push_back(NewB);
+ 					nowbobble[{x, y}].push_back(NewB);
 				}
 			}
  			remove_bobble(x, y, now);
 			nowmap = getmap();
 			CellCount++ ;
+			if (CellCount == 5)
+			{
+				all_down_switch = true;
+			}
 			firing = false;
 		}
 		else if (firebobble->IsDestroy() == false)
@@ -454,7 +472,6 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		fired_bobble();
 	}	
-
 }
 
 

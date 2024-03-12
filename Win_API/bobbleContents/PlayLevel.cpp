@@ -402,6 +402,8 @@ void PlayLevel::Tick(float _DeltaTime) {
 	if (nowbobble.size() <= 0)
 	{
 		nextLevel();
+		downCount = 0;
+		CellCount = 0;
 	}
 
 	ULevel::Tick(_DeltaTime);

@@ -2,7 +2,7 @@
 #include <EngineCore\Actor.h>
 #include "Enums.h"
 // Ό³Έν :
-class DragonTool : public AActor
+class DragonTool : public AActor, public helper
 {
 public:
 	// constrcuter destructer

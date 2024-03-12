@@ -27,6 +27,10 @@ public:
 	}
 protected:
 	static int Level;
+	static int CellCount;
+	static int downCount;
+	static bool firing;
+	static bool stageclear;
 	int* LevelPtr = &Level;
 	float Angle = 0.0f;
 };

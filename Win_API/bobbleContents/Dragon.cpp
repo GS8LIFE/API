@@ -82,12 +82,14 @@ void Dragon::Attack(float _DeltaTime)
 {
 	{
 	}
-	if (
-		true == Renderer->IsCurAnimationEnd()
-		)
+	if (true == Renderer->IsCurAnimationEnd())
 	{
+		Renderer->ChangeAnimation("Idle");
+		if (firing == false)
+		{
 		StateChange(NowState::Idle);
 		return;
+		}
 	}
 	
 
@@ -96,9 +98,7 @@ void Dragon::Attack(float _DeltaTime)
 
 void Dragon::Idle(float _DeltaTime)
 {
-	if (
-		true == UEngineInput::IsPress(VK_SPACE)
-		)
+	if (true == UEngineInput::IsDown(VK_SPACE))
 	{
 		StateChange(NowState::Attack);
 		return;

@@ -222,10 +222,6 @@ void Bobblefire::Idle(float _DeltaTime)
 }
 void Bobblefire::Tick(float _DeltaTime)
 {
-	if (true == UEngineInput::IsDown('Q'))
-	{
-		FireAng = FireAng;
-	}
 	std::vector<UCollision*> Result;
 	if (true == BodyCollision->CollisionCheck(ColliderOrder::bobble, Result))
 	{

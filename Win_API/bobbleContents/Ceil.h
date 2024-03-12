@@ -2,13 +2,13 @@
 #include <EngineCore\Actor.h>
 #include "Enums.h"
 // Ό³Έν :
-class Ceil : public AActor
+class Ceil : public AActor, public helper
 {
 public:
 	// constrcuter destructer
 	Ceil();
 	~Ceil();
-
+	int hello = 770;
 	// delete Function
 	Ceil(const Ceil& _Other) = delete;
 	Ceil(Ceil&& _Other) noexcept = delete;
@@ -28,8 +28,10 @@ private:
 	float AnimationTime = 0.0f;
 	int AnimationFrame = 0;
 
+	int ceilH = 0;
+	int collide = 32;
+	int High = 35;
 	float AlphaTime = 0.0f;
 	bool Dir = false;
-
 };
 

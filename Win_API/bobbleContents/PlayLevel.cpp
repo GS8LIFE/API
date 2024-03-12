@@ -9,6 +9,11 @@
 #include "Bobble.h"
 #include "Bobblefire.h"
 #include <EngineCore\EngineCore.h>
+
+
+
+
+
 PlayLevel::PlayLevel() 
 {
 
@@ -21,8 +26,10 @@ PlayLevel::~PlayLevel()
 void PlayLevel::BeginPlay()
 {
 	ULevel::BeginPlay();
-
+	//레벨 체크 및 맵에 있는 버블 초기화
 	mapLevel();
+	nowbobble.clear();
+
 	FVector WindowScale = GEngine->MainWindow.GetWindowScale();
 	AActor* Back = SpawnActor<AActor>();
 	UImageRenderer* Renderer = Back->CreateImageRenderer(RenderOrder::Map);
@@ -51,9 +58,6 @@ void PlayLevel::BeginPlay()
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
 
 	helper maphelper;
-
-	//버블 배열
-
 	maphelper.setnowmap(getnowmap());
 
 	for (int row_idx = 0; row_idx < map.size(); ++row_idx)
@@ -150,7 +154,6 @@ void PlayLevel::remove_bobble(int _row, int _col, char _color)
 	if (visited.size() >= 3)
 	{
 		remove_visited_bubbles();
-
 	 	remove_hanging_bubbles();
 	}
 
@@ -342,6 +345,11 @@ void PlayLevel:: nextLevel()
 		helper::Level = 0;
 		return;
 	}
+	else if (Level >= 20)
+	{
+		helper::Level = 20;
+		return;
+	}
 	str = str + std::to_string(Level);
 	GEngine->DestroyLevel(str);
 	helper::Level++;
@@ -354,7 +362,7 @@ void PlayLevel::PreLevel()
 {
 	std::string str;
 	str = "Level";
-	if (Level < 0)
+	if (Level < 0 )
 	{
 		helper::Level = 0;
 		return;
@@ -367,9 +375,17 @@ void PlayLevel::PreLevel()
 	GEngine->CreateLevel<PlayLevel>(str);
 	GEngine->ChangeLevel(str);
 }
-void PlayLevel::Tick(float _DeltaTime) {
 
-	if (nowbobble.size() <= 0)
+void PlayLevel::Tick(float _DeltaTime) {
+	if (UEngineInput::IsDown('Z'))
+	{
+	GEngine->EngineDebugSwitch();
+	}
+	if (UEngineInput::IsDown('X'))
+	{
+		CellCount = 5;
+	}
+	if (nowbobble.size() < 0)
 	{
 		nextLevel();
 	}

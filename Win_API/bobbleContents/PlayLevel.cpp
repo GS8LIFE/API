@@ -94,6 +94,7 @@ void PlayLevel::BeginPlay()
 		}
 	}
 	fire_bobble();
+	BGMPlayer = UEngineSound::SoundPlay("BGM.MP3");
 }
 
 
@@ -124,7 +125,15 @@ void PlayLevel::set_map_vector()
 	if (y > 0)
 	{
 		y = ((int)collideLocate.Y - 81 - (downCount * 32)) / 32 + 1;
-		x = check_x(x,y);
+		if (y % 2 == 1)
+		{
+			x = ((int)collideLocate.X - 221) / 16;
+			x = check_x(x,y);
+		}
+		else
+		{
+			x = check_x(x, y);
+		}
 	}
 	else
 	{
@@ -274,13 +283,14 @@ void PlayLevel::remove_visited_bubbles()
 
 			}
 		}
+		powPlayer = UEngineSound::SoundPlay("pow.wav");
 	}
 	int a = 0;
 }
 void PlayLevel::remove_not_visited_bubbles()
 {
 	std::pair<int, int> p;
-
+	bool soundBool = false;
 	for (int col = 0; col < 11; col++)
 	{
 		for (int row = 0; row < 8; row++)
@@ -292,15 +302,21 @@ void PlayLevel::remove_not_visited_bubbles()
 					auto bobbles = nowbobble[{row, col}]; // std::vector<Bobble*>
 				for (auto bobble : bobbles) { // bobbles에서 원소들을 받아오는거기에 Bobble* 
 					bobble->Destroy();
+					soundBool = true;
 				}
 					nowbobble.erase({ row,col });
 			}
 		}
 	}
+	if (soundBool)
+	{
+		hangpowPlayer = UEngineSound::SoundPlay("hangpow.wav");
+	}
 }
 
 void PlayLevel::all_down()
 {
+
 	for (int col = 0; col < 11; col++)
 	{
 		for (int row = 0; row < 8; row++)
@@ -313,6 +329,7 @@ void PlayLevel::all_down()
 			}
 		}
 	}
+	downPlayer = UEngineSound::SoundPlay("down_sound.wav");
 }
 
 
@@ -384,17 +401,27 @@ void PlayLevel::PreLevel()
 }
 
 void PlayLevel::Tick(float _DeltaTime) {
+	switch (downCount)
+	{
+	case 0:
 
+		break;
+	default:
+		break;
+	}
 	if (UEngineInput::IsDown('Z'))
 	{
 	GEngine->EngineDebugSwitch();
 	}
 	if (UEngineInput::IsDown('X'))
 	{
-		CellCount = 5;
+		all_down();
+		all_down_switch = false;
 	}
 	if (nowbobble.size() <= 0)
 	{
+		all_down_switch = false;
+		BGMPlayer.Off();
 		nextLevel();
 		downCount = 0;
 		CellCount = 0;
@@ -411,14 +438,21 @@ void PlayLevel::Tick(float _DeltaTime) {
 		firebobble->setfireAng(Arrow->getangle());
 		cur_bobble = false;
 		firing = true;
+		shootPlayer = UEngineSound::SoundPlay("shoot.wav");
 	}
 	if (UEngineInput::IsDown('L'))
 	{
 		nextLevel();
+		BGMPlayer.Off();
+		downCount = 0;
+		CellCount = 0;
 	}
 	if (UEngineInput::IsDown('K'))
 	{
 		PreLevel();
+		BGMPlayer.Off();
+		downCount = 0;
+		CellCount = 0;
 	}
 	else if (firing == true) 
 	{
@@ -458,7 +492,7 @@ void PlayLevel::Tick(float _DeltaTime) {
  			remove_bobble(x, y, now);
 			nowmap = getmap();
 			CellCount++ ;
-			if (CellCount == 5)
+			if (CellCount == DownLevel)
 			{
 				all_down_switch = true;
 			}

@@ -5,6 +5,7 @@
 #include <EnginePlatform/EngineInput.h>
 #include "Bobblefire.h"
 #include "Bobble.h"
+#include <EnginePlatform\EngineSound.h>
 // Ό³Έν :
 class arrow;
 class PlayLevel : public ULevel , public AActor , public helper 
@@ -52,6 +53,7 @@ protected:
 	bool cur_bobble = false;
 	bool fire = false;
 	bool all_down_switch = false;
+	static bool DownLevel;
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
@@ -62,6 +64,7 @@ private:
 	int x = 0;
 	int y = 0;
 	char now;
+
 	std::map<std::pair<int, int>, std::vector<Bobble*>> nowbobble;
 	std::vector<std::pair<int, int>> visited;
 	std::map<int, std::vector<char>> map;
@@ -71,6 +74,11 @@ private:
 	Bobble* nextbobble = nullptr;
 	FVector collideLocate = FVector::Zero - FVector{ 0.0f, 0.0f, 0.0f, 0.0f };
 
+	UEngineSoundPlayer BGMPlayer;
+	UEngineSoundPlayer powPlayer;
+	UEngineSoundPlayer shootPlayer;
+	UEngineSoundPlayer hangpowPlayer;
+	UEngineSoundPlayer downPlayer;
 
 };
 

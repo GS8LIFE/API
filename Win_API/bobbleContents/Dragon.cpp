@@ -36,6 +36,7 @@ void Dragon::waitStart()
 void Dragon::attackStart()
 {
 	Renderer->ChangeAnimation("attack");
+
 }
 void Dragon::StateChange(NowState _State)
 {
@@ -80,8 +81,6 @@ void Dragon::StateUpdate(float _DeltaTime)
 }
 void Dragon::Attack(float _DeltaTime)
 {
-	{
-	}
 	if (true == Renderer->IsCurAnimationEnd())
 	{
 		Renderer->ChangeAnimation("Idle");

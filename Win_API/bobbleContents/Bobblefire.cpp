@@ -184,6 +184,7 @@ void Bobblefire::fire()
 			if (FireAng > 0) // 180µµ
 			{
 				FireAng = 180 - FireAng;
+				SoundPlayer = UEngineSound::SoundPlay("wallcollide.wav");
 			}
 			else
 			{

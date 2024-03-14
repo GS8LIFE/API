@@ -28,6 +28,7 @@ protected:
 	static int downCount;
 	static bool firing;
 	static bool stageclear;
+	static bool DownLevel;
 	int* LevelPtr = &Level;
 	float Angle = 0.0f;
 };

@@ -16,7 +16,7 @@ void Ceil::BeginPlay()
 
 	Renderer = CreateImageRenderer(RenderOrder::border);
 	Renderer->SetImage("Ceil.png");
-	Renderer->SetTransform({ {318,35}, {260, hello} });
+	Renderer->SetTransform({ {318,35}, {260, 805} });
 	Renderer->CreateAnimation("idle", "Ceil.png", 0, 0, 0.05f, false);
 
 	Renderer->ChangeAnimation("idle");
@@ -29,12 +29,6 @@ void Ceil::BeginPlay()
 
 void Ceil::Tick(float _DeltaTime)
 {
-	AActor::Tick(_DeltaTime);
-	if (UEngineInput::IsDown('C'))
-	{
-		hello += 35;
-		Renderer->SetTransform({ {318,35}, {260, hello} });
-	}
 	if (CellCount == 5)
 	{
 		std::string str;

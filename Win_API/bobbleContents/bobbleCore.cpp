@@ -64,10 +64,19 @@ void bobbleCore::BeginPlay()
 
 	UWindowImage* Rot = UEngineResourcesManager::GetInst().FindImg("arrow.png");
 	UWindowImage* Mask = UEngineResourcesManager::GetInst().FindImg("arrow_Mask.bmp");
+
+
+	std::list<UEngineFile> NewList1 = NewDir.AllFile({ ".wav", ".mp3" }, true);
+	// 엔진만의 규칙을 정할거냐.
+	for (UEngineFile& File : NewList1)
+	{
+		UEngineSound::Load(File.GetFullPath());
+	}
+
 	Rot->SetRotationMaskImage(0, Mask, 0);
 	CreateLevel<TitleLevel>("Title");
-	CreateLevel<PlayLevel>("Level1");
 	ChangeLevel("Title");
+
 }
 
 void bobbleCore::Tick(float _DeltaTime)

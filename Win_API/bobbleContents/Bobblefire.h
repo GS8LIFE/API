@@ -3,6 +3,7 @@
 #include "Enums.h"
 #include <EngineBase/EngineRandom.h>
 #include <EngineBase/EngineMath.h>
+#include <EnginePlatform\EngineSound.h>
 #include <cmath>
 #include "arrow.h"
 #include "Bobble.h"
@@ -63,6 +64,7 @@ private:
 	FVector locate = float4::Zero;
 	FVector* locatePtr = &locate;
 	UImageRenderer* Renderer = nullptr;
+	UEngineSoundPlayer SoundPlayer;
 	int count = 0;
 	int WaitTime = 0;
 	float CoolTime = 0.0f;

@@ -103,14 +103,13 @@ int PlayLevel::check_x(int _x,int _y)
 	{
 		if (y % 2 == 1)
 		{	
-			_x = (collideLocate.X - 237) / 32 + 1;
+			_x = ((int)collideLocate.X - 237) / 32 + 1;
 		}
 		else
 		{
-		_x = (collideLocate.X - 221) / 32 + 1;
+		_x = ((int)collideLocate.X - 221) / 32 + 1;
 		}
 	}
-	else
 	return _x;
 }
 
@@ -120,11 +119,11 @@ std::map<int, std::vector<char>> PlayLevel::getmap()
 }
 void PlayLevel::set_map_vector()
 {
-	y = (collideLocate.Y - 65 - (downCount * 32)) / 16 ;
-	x = (collideLocate.X - 205) / 16;
+	y = ((int)collideLocate.Y - 65 - (downCount * 32)) / 16 ;
+	x = ((int)collideLocate.X - 205) / 16;
 	if (y > 0)
 	{
-		y = (collideLocate.Y - 81 - (downCount * 32)) / 32 + 1;
+		y = ((int)collideLocate.Y - 81 - (downCount * 32)) / 32 + 1;
 		x = check_x(x,y);
 	}
 	else
@@ -386,11 +385,6 @@ void PlayLevel::PreLevel()
 
 void PlayLevel::Tick(float _DeltaTime) {
 
-	if (all_down_switch)
-	{
-		all_down();
-		all_down_switch = false;
-	}
 	if (UEngineInput::IsDown('Z'))
 	{
 	GEngine->EngineDebugSwitch();
@@ -404,6 +398,11 @@ void PlayLevel::Tick(float _DeltaTime) {
 		nextLevel();
 		downCount = 0;
 		CellCount = 0;
+	}
+	if (all_down_switch)
+	{
+		all_down();
+		all_down_switch = false;
 	}
 
 	ULevel::Tick(_DeltaTime);

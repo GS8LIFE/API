@@ -53,6 +53,8 @@ void bobbleCore::BeginPlay()
 
 	UEngineResourcesManager::GetInst().CuttingImage("Bobble.png", 16, 13);
 
+	UEngineResourcesManager::GetInst().CuttingImage("Score.png", 10, 8);
+
 	UEngineResourcesManager::GetInst().CuttingImage("Title1.png", 10, 11);
 	UEngineResourcesManager::GetInst().CuttingImage("Title2.png", 10, 10);
 	UEngineResourcesManager::GetInst().CuttingImage("Title3.png", 10, 10);

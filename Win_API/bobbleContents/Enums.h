@@ -29,6 +29,7 @@ protected:
 	static bool firing;
 	static bool stageclear;
 	static bool DownLevel;
+	static bool End;
 	int* LevelPtr = &Level;
 	float Angle = 0.0f;
 };
@@ -48,7 +49,8 @@ enum class NowState
 	wait,
 	Move,
 	LMove,
-	fire
+	fire,
+	wave
 };
 enum RenderOrder
 {
@@ -59,6 +61,7 @@ enum RenderOrder
 	wheel,
 	dragon,
 	bobble,
+	Scores,
 	others,
 	Title
 };

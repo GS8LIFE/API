@@ -29,7 +29,7 @@ void Ceil::BeginPlay()
 
 void Ceil::Tick(float _DeltaTime)
 {
-	if (CellCount == 5)
+	if (CellCount == 6)
 	{
 		std::string str;
 		str = "down";

@@ -9,6 +9,7 @@
 #include "Bobble.h"
 #include "Bobblefire.h"
 #include <EngineCore\EngineCore.h>
+#include "score.h"
 
 
 
@@ -56,7 +57,7 @@ void PlayLevel::BeginPlay()
 	Dragon2* Player2 = SpawnActor<Dragon2>();
 	Dragon2Tool* Dragon2T = SpawnActor<Dragon2Tool>();
 	DragonTool* Dragon1T = SpawnActor<DragonTool>();
-
+	Score* Scorenow = SpawnActor<Score>();
 	helper maphelper;
 	maphelper.setnowmap(getnowmap());
 
@@ -401,14 +402,6 @@ void PlayLevel::PreLevel()
 }
 
 void PlayLevel::Tick(float _DeltaTime) {
-	switch (downCount)
-	{
-	case 0:
-
-		break;
-	default:
-		break;
-	}
 	if (UEngineInput::IsDown('Z'))
 	{
 	GEngine->EngineDebugSwitch();
@@ -492,11 +485,15 @@ void PlayLevel::Tick(float _DeltaTime) {
  			remove_bobble(x, y, now);
 			nowmap = getmap();
 			CellCount++ ;
-			if (CellCount == DownLevel)
+			if (CellCount == 6)
 			{
 				all_down_switch = true;
 			}
 			firing = false;
+			if (CellCount == 5)
+			{
+				downPlayer = UEngineSound::SoundPlay("NextDown.wav");
+			}
 		}
 		else if (firebobble->IsDestroy() == false)
 		{

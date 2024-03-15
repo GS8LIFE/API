@@ -24,6 +24,8 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 
+
+
 	// 상태 주요 업데이트
 	void StateChange(NowState _State);
 	void StateUpdate(float _DeltaTime);

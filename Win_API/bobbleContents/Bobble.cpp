@@ -193,6 +193,7 @@ void Bobble::StateUpdate(float _DeltaTime)
 void Bobble::wait(float _DeltaTime)
 {
 	CoolTime += _DeltaTime;
+	
 	if (CoolTime >= 1.4)
 	{
 		StateChange(NowState::Idle);
@@ -200,7 +201,6 @@ void Bobble::wait(float _DeltaTime)
 		WaitTime = RandomInt(1, 10);
 		return;
 	}
-
 }
 
 void Bobble::Idle(float _DeltaTime)
@@ -213,8 +213,10 @@ void Bobble::Idle(float _DeltaTime)
 		return;
 	}
 }
+
 void Bobble::Tick(float _DeltaTime)
 {
+
 	AActor::Tick(_DeltaTime);
 	StateUpdate(_DeltaTime);
 	if (UEngineInput::IsPress(VK_RIGHT))

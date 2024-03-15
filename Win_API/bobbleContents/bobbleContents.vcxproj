@@ -179,6 +179,7 @@
     <ClInclude Include="Enums.h" />
     <ClInclude Include="MovieSeen.h" />
     <ClInclude Include="PlayLevel.h" />
+    <ClInclude Include="score.h" />
     <ClInclude Include="shooter.h" />
     <ClInclude Include="TitleLevel.h" />
     <ClInclude Include="ValueSotre.h" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Enums.cpp" />
     <ClCompile Include="MovieSeen.cpp" />
     <ClCompile Include="PlayLevel.cpp" />
+    <ClCompile Include="score.cpp" />
     <ClCompile Include="shooter.cpp" />
     <ClCompile Include="TitleLevel.cpp" />
   </ItemGroup>

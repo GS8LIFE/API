@@ -23,6 +23,7 @@ void TitleLevel::Tick(float _DeltaTime)
 	{
 		GEngine->CreateLevel<PlayLevel>("Level1");
 		GEngine->ChangeLevel("Level1");
+		BGMPlayer.Off();
 		GEngine->DestroyLevel("Title");
 		
 	}

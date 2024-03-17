@@ -21,8 +21,7 @@ void bobbleCore::BeginPlay()
 
 
 	UEngineDirectory NewDir;
-	NewDir.MoveParent();
-	NewDir.Move("ContentsResources");
+	NewDir.Move("file");
 
 	std::list<UEngineFile> NewList = NewDir.AllFile({ ".png", ".bmp" }, true);
 

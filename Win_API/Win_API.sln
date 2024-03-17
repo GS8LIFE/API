@@ -16,6 +16,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level2", "Level2", "{C85A2C21-D259-450E-BD73-8DA99FC12A52}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level3", "Level3", "{7B804B8B-4F99-49E7-B31F-C808336ED432}"
+	ProjectSection(SolutionItems) = preProject
+		bobbleContents\arrow.cpp = bobbleContents\arrow.cpp
+		bobbleContents\arrow.h = bobbleContents\arrow.h
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level4", "Level4", "{377084C8-72D9-426C-83B0-1A8397BB7978}"
 EndProject

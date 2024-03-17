@@ -30,6 +30,7 @@ protected:
 
 private:
 
+
 	UImageRenderer* Score1 = nullptr;
 	UImageRenderer* Score2 = nullptr;
 	UImageRenderer* Score3 = nullptr;

@@ -64,6 +64,14 @@ private:
 	int x = 0;
 	int y = 0;
 	char now;
+	int hangcount = 0;
+	int visitcount = 0;
+
+
+
+	UImageRenderer* nowend = nullptr;
+
+
 
 	std::map<std::pair<int, int>, std::vector<Bobble*>> nowbobble;
 	std::vector<std::pair<int, int>> visited;

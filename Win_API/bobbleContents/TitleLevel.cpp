@@ -14,6 +14,7 @@ void TitleLevel::BeginPlay()
 {
 	ULevel::BeginPlay();
 
+	BGMPlayer = UEngineSound::SoundPlay("Title.mp3");
 	MovieSeen* Movie = SpawnActor<MovieSeen>();
 }
 void TitleLevel::Tick(float _DeltaTime)

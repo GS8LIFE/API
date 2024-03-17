@@ -4,6 +4,7 @@
 #include "Enums.h"
 Dragon::Dragon()
 {
+
 }
 
 Dragon::~Dragon()
@@ -19,6 +20,7 @@ void Dragon::BeginPlay()
 	Renderer->CreateAnimation("idle", "BobbleDragon.png", 0, 0, 0.1f, true);
 	Renderer->CreateAnimation("wait", "BobbleDragon.png", 0, 2, 0.1f, true);
 	Renderer->CreateAnimation("attack", "BobbleDragon.png", 2, 5, 0.1f, false);
+	Renderer->CreateAnimation("end", "BobbleDragon.png", 11, 14, 0.1f, true);
 
 	StateChange(NowState::Idle);
 }
@@ -36,7 +38,12 @@ void Dragon::waitStart()
 void Dragon::attackStart()
 {
 	Renderer->ChangeAnimation("attack");
+}
 
+void Dragon::endStart()
+{
+	Renderer->ChangeAnimation("end");
+	BGMPlayer = UEngineSound::SoundPlay("endbgm.mp3");
 }
 void Dragon::StateChange(NowState _State)
 {
@@ -47,8 +54,8 @@ void Dragon::StateChange(NowState _State)
 		case NowState::Idle:
 			IdleStart();
 			break;
-		case NowState::wait:
-			waitStart();
+		case NowState::end:
+			endStart();
 			break;
 		case NowState::Attack:
 			attackStart();
@@ -73,6 +80,9 @@ void Dragon::StateUpdate(float _DeltaTime)
 	case NowState::Attack:
 		Attack(_DeltaTime);
 		break;
+	case NowState::end:
+		end(_DeltaTime);
+		break;
 	default:
 		break;
 	}
@@ -81,6 +91,11 @@ void Dragon::StateUpdate(float _DeltaTime)
 }
 void Dragon::Attack(float _DeltaTime)
 {
+	if (Endbool == true)
+	{
+		StateChange(NowState::end);
+		return;
+	}
 	if (true == Renderer->IsCurAnimationEnd())
 	{
 		Renderer->ChangeAnimation("Idle");
@@ -90,16 +105,31 @@ void Dragon::Attack(float _DeltaTime)
 		return;
 		}
 	}
-	
-
-
 }
 
 void Dragon::Idle(float _DeltaTime)
 {
+	if (Endbool == true)
+	{
+		StateChange(NowState::end);
+		return;
+	}
 	if (true == UEngineInput::IsDown(VK_SPACE))
 	{
 		StateChange(NowState::Attack);
+		return;
+	}
+}
+
+void Dragon::end(float _DeltaTime)
+{
+	cooltime += _DeltaTime;
+
+	if (cooltime >= 3.5f)
+	{
+		StateChange(NowState::Idle);
+		nextlevel.nextLevel();
+		Endbool = false;
 		return;
 	}
 }

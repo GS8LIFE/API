@@ -10,6 +10,7 @@
 #include "Bobblefire.h"
 #include <EngineCore\EngineCore.h>
 #include "score.h"
+#include <cmath>
 
 
 
@@ -37,7 +38,6 @@ void PlayLevel::BeginPlay()
 	Renderer->SetImage("map.png");
 	Renderer->SetPosition(WindowScale.Half2D());
 	Renderer->SetScale(WindowScale);
-
 	AActor* borderline = SpawnActor<AActor>();
 	UImageRenderer* Renderer1 = borderline->CreateImageRenderer(RenderOrder::Map);
 	Renderer1->SetImage("border.png");
@@ -280,13 +280,15 @@ void PlayLevel::remove_visited_bubbles()
 				for (auto bobble : bobbles) {
 					bobble->Destroy();
 					nowbobble.erase({ row,col });
+					visitcount++;
 				}
 
 			}
 		}
 		powPlayer = UEngineSound::SoundPlay("pow.wav");
 	}
-	int a = 0;
+	score += visitcount * 10;
+	visitcount = 0;
 }
 void PlayLevel::remove_not_visited_bubbles()
 {
@@ -303,6 +305,7 @@ void PlayLevel::remove_not_visited_bubbles()
 					auto bobbles = nowbobble[{row, col}]; // std::vector<Bobble*>
 				for (auto bobble : bobbles) { // bobbles에서 원소들을 받아오는거기에 Bobble* 
 					bobble->Destroy();
+					hangcount++;
 					soundBool = true;
 				}
 					nowbobble.erase({ row,col });
@@ -312,6 +315,11 @@ void PlayLevel::remove_not_visited_bubbles()
 	if (soundBool)
 	{
 		hangpowPlayer = UEngineSound::SoundPlay("hangpow.wav");
+	}
+	if (hangcount != 0)
+	{
+	score += pow(2, hangcount) * 10;
+	hangcount = 0;
 	}
 }
 
@@ -415,7 +423,7 @@ void PlayLevel::Tick(float _DeltaTime) {
 	{
 		all_down_switch = false;
 		BGMPlayer.Off();
-		nextLevel();
+		Endbool = true;
 		downCount = 0;
 		CellCount = 0;
 	}

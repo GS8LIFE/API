@@ -2,7 +2,6 @@
 #include <EngineCore\Actor.h>
 #include "Enums.h"
 #include <EngineBase/EngineRandom.h>
-
 // 설명 :
 class Bobble : public AActor, public UEngineRandom, public helper
 {
@@ -33,10 +32,12 @@ protected:
 	// 상태 함수들
 	void Idle(float _DeltaTime);
 	void wait(float _DeltaTime);
+	void start(float _DeltaTime);
 	
 	// 상태 시작 함수들
 	void IdleStart();
 	void waitStart();
+	void startStart();
 
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";

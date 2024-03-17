@@ -1,6 +1,6 @@
 #pragma once
 #include <EngineCore\Level.h>
-
+#include <EnginePlatform\EngineSound.h>
 // Ό³Έν :
 class TitleLevel : public ULevel
 {
@@ -21,5 +21,6 @@ protected:
 
 private:
 
+	UEngineSoundPlayer BGMPlayer;
 };
 

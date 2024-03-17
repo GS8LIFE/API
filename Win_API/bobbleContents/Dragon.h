@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore\Actor.h>
 #include "Enums.h"
+#include "PlayLevel.h"
+#include <EnginePlatform\EngineSound.h>
 // 설명 :
 class Dragon : public AActor, public helper
 {
@@ -26,22 +28,27 @@ protected:
 	// 상태 함수들
 	void Idle(float _DeltaTime);
 	void Attack(float _DeltaTime);
+	void end(float _DeltaTime);
 
 	// 상태 시작 함수들
 	void IdleStart();
 	void waitStart();
 	void attackStart();
+	void endStart();
 
 	NowState State = NowState::Idle;
 	std::string CurAnimationName = "Idle";
 
 private:
 	UImageRenderer* Renderer = nullptr;
+	PlayLevel nextlevel;
 	float AnimationTime = 0.0f;
+	float cooltime = 0.0f;
 	int AnimationFrame = 0;
 
 	float AlphaTime = 0.0f;
 	bool Dir = false;
 
+	UEngineSoundPlayer BGMPlayer;
 };
 

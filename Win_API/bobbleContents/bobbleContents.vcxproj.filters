@@ -41,6 +41,7 @@
     <ClInclude Include="DegreeShare.h" />
     <ClInclude Include="ValueSotre.h" />
     <ClInclude Include="score.h" />
+    <ClInclude Include="end.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bobbleCore.cpp" />
@@ -82,6 +83,7 @@
     </ClCompile>
     <ClCompile Include="DegreeShare.cpp" />
     <ClCompile Include="score.cpp" />
+    <ClCompile Include="end.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">
